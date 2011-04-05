@@ -111,21 +111,9 @@ public class PerssearchLoader {
 		List<Person> list = new ArrayList<Person>();
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject object = (JSONObject) jsonArray.get(i);
-			list.add(new Person(object));
+			list.add(new Person(object.toString()));
 		}
 		return list;
-	}
-
-	public Person getPersonById(String id) {
-		if (id == null) {
-			return Person.EMPTY;
-		}
-		for (Person person : personsList) {
-			if (id.equals(person.getId())) {
-				return person;
-			}
-		}
-		return Person.EMPTY;
 	}
 
 }

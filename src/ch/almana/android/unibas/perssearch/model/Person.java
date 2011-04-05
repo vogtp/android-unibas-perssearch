@@ -31,9 +31,17 @@ public class Person {
 
 	private JSONObject jsonObject;
 
-	public Person(JSONObject object) {
+	private String jsonString;
+
+	public Person(String jsonString) {
 		super();
-		this.jsonObject = object;
+		try {
+			this.jsonObject = new JSONObject(jsonString);
+		} catch (JSONException e) {
+			jsonObject = new JSONObject();
+			Logger.e("Cannot initalise person from sting " + jsonString, e);
+		}
+		this.jsonString = jsonString;
 	}
 
 	private Person() {
@@ -83,12 +91,16 @@ public class Person {
 	public String[] getValuesAarry() {
 		String ID = getId();
 		return new String[] { ID, // ID
-				getName(), getEmail(), ID,
+				getName(), getEmail(), jsonString,
 		};
 	}
 
 	public String getId() {
 		return Integer.toString(jsonObject.hashCode());
+	}
+
+	public String getJsonString() {
+		return jsonString;
 	}
 
 	@Override

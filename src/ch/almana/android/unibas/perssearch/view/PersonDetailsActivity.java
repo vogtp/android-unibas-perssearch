@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.widget.TextView;
 import ch.almana.android.unibas.perssearch.R;
-import ch.almana.android.unibas.perssearch.access.PerssearchLoader;
 import ch.almana.android.unibas.perssearch.helper.Logger;
 import ch.almana.android.unibas.perssearch.model.Person;
 
@@ -32,9 +31,9 @@ public class PersonDetailsActivity extends Activity {
 
 
         Intent intent = getIntent();
-		String personId = intent.getStringExtra(EXTRA_ID);
+		String personString = intent.getStringExtra(EXTRA_ID);
 
-		person = PerssearchLoader.getInstance().getPersonById(personId);
+		person = new Person(personString);
 
 		tvName = (TextView) findViewById(R.id.tvName);
 		tvEmail = (TextView) findViewById(R.id.tvEmail);

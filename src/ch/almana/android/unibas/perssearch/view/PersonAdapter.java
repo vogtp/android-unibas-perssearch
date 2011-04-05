@@ -61,6 +61,6 @@ class PersonAdapter extends BaseAdapter implements AdapterView.OnItemClickListen
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		this.perssearchActivity.launchPersonActivity(persons.get(position).getId());
+		this.perssearchActivity.launchPersonActivity(persons.get(position).getJsonString());
     }
 }
