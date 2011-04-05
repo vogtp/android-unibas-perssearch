@@ -1,0 +1,5 @@
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+        android:label="@string/search_label"
+        android:includeInGlobalSearch="true"
+        android:searchSuggestIntentAction="android.intent.action.VIEW" android:searchSuggestAuthority="perssearch" android:searchSettingsDescription="@string/search_settings_description" android:searchSuggestThreshold="3">
+</searchable>
