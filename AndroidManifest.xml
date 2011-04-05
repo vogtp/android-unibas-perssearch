@@ -5,7 +5,7 @@
     <uses-sdk android:minSdkVersion="4" />
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
-    <application android:label="@string/app_name" android:icon="@drawable/unibasel">
+    <application android:label="@string/app_name" android:icon="@drawable/unibasel_with_bg">
 
         <activity android:label="@string/app_name"
                 android:theme="@android:style/Theme.NoTitleBar" android:name=".view.PerssearchActivity">
