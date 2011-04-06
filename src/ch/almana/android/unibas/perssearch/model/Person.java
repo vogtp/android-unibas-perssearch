@@ -1,5 +1,8 @@
 package ch.almana.android.unibas.perssearch.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +35,10 @@ public class Person {
 	// private static final String KEY_PHONE_FAX = null;
 	public static final String KEY_ADDRESS = "postaladdress";
 	public static final String KEY_STUDENT_TYPE = "edupersonaffiliation";
+	
+	public static enum FieldTypes {
+		MAIL, PHONE_WORK, ADDRESS, STUDENT_TYPE
+	};
 
 	private static final String ADDRESS_SEPARATOR = "$";
 
@@ -108,7 +115,10 @@ public class Person {
 		String description = getStudentType();
 		if (description == NOT_GIVEN || TextUtils.isEmpty(description)) {
 			String adr = getJsonEntry(KEY_ADDRESS);
-			description = adr.substring(0, adr.indexOf(ADDRESS_SEPARATOR));
+			int idx = adr.indexOf(ADDRESS_SEPARATOR);
+			if (idx > 0) {
+				description = adr.substring(0, idx);
+			}
 		}
 		if (description == NOT_GIVEN || TextUtils.isEmpty(description)) {
 			description = getEmail();
@@ -139,5 +149,29 @@ public class Person {
 		}
 		return sb.toString();
 	}
+
+	public void getDataFields() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<FieldTypes> getNonblankFields() {
+		ArrayList<FieldTypes> fields = new ArrayList<FieldTypes>();
+		if (hasField(getEmail())) {
+			fields.add(FieldTypes.MAIL);
+		}
+		if (hasField(getPhoneWork())) {
+			fields.add(FieldTypes.PHONE_WORK);
+		}
+		if (hasField(getAddress())) {
+			fields.add(FieldTypes.ADDRESS);
+		}
+		return fields;
+	}
+
+	private boolean hasField(String value) {
+		return value != null && !TextUtils.isEmpty(value.trim()) && !value.equals(Person.NOT_GIVEN);
+	}
+
 
 }

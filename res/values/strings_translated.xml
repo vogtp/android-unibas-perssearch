@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">Perssearch Uni Basel</string>
+
+    <string name="search_label">Perssearch</string>
+
+    <string name="menu_search">Search</string>
+
+    <string name="search_instructions">Press the search key to look up a member of the University of Basel</string>
+
+    <string name="search_results">Search results for \'<xliff:g id="string">%s</xliff:g>\': </string>
+    
+    <string name="search_settings_description">Members of the University of Basel</string>
+</resources>
