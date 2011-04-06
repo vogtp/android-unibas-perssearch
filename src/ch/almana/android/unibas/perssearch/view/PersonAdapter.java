@@ -57,7 +57,7 @@ class PersonAdapter extends BaseAdapter implements AdapterView.OnItemClickListen
 
 	private void bindView(TwoLineListItem view, Person person) {
 		view.getText1().setText(person.getName());
-		view.getText2().setText(person.getEmail());
+		view.getText2().setText(person.getDesciption());
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -4,9 +4,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.text.TextUtils;
 import ch.almana.android.unibas.perssearch.helper.Logger;
 
 public class Person {
+
 	// {"registeredaddress":"","unibaschhomefax":"","homepostaladdress":"","sn":"Vogt",
 	// "postaladdress":"Universitätsrechenzentrum$Klingelbergstrasse 70$CH-4056 Basel",
 	// "dn":"uid=vogtp, ou=people, ou=intern, ou=psearch, dc=unibas, dc=ch","uid":"vogtp",
@@ -24,10 +26,14 @@ public class Person {
 	public static final String KEY_NAME = "displayname";
 	public static final String KEY_MAIL = "mail";
 	public static final String KEY_PHONE_WORK = "facsimiletelephonenumber";
+
 	// private static final String KEY_PHONE_HOME = null;
 	// private static final String KEY_PHONE_MOBILE = null;
 	// private static final String KEY_PHONE_FAX = null;
 	public static final String KEY_ADDRESS = "postaladdress";
+	public static final String KEY_STUDENT_TYPE = "edupersonaffiliation";
+
+	private static final String ADDRESS_SEPARATOR = "$";
 
 	private JSONObject jsonObject;
 
@@ -85,18 +91,33 @@ public class Person {
 	// }
 
 	public String getAddress() {
-		return getJsonEntry(KEY_ADDRESS).replace("$", "\n");
+		return getJsonEntry(KEY_ADDRESS).replace(ADDRESS_SEPARATOR, "\n");
+	}
+
+	public String getStudentType() {
+		return getJsonEntry(KEY_STUDENT_TYPE);
 	}
 
 	public String[] getValuesAarry() {
-		String ID = getId();
-		return new String[] { ID, // ID
-				getName(), getEmail(), jsonString,
-		};
+		String ID = "1";// getId();
+		String intentData = jsonString;
+		return new String[] { ID, getName(), getDesciption(), intentData, };
+	}
+
+	public String getDesciption() {
+		String description = getStudentType();
+		if (description == NOT_GIVEN || TextUtils.isEmpty(description)) {
+			String adr = getJsonEntry(KEY_ADDRESS);
+			description = adr.substring(0, adr.indexOf(ADDRESS_SEPARATOR));
+		}
+		if (description == NOT_GIVEN || TextUtils.isEmpty(description)) {
+			description = getEmail();
+		}
+		return description;
 	}
 
 	public String getId() {
-		return Integer.toString(jsonObject.hashCode());
+		return Integer.toString(jsonString.hashCode());
 	}
 
 	public String getJsonString() {
