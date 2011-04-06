@@ -22,6 +22,7 @@ public class PersonDetailsActivity extends Activity {
 	private TextView tvPhoneWork;
 	private TextView tvAddress;
 	private TextView tvDebug;
+	private TextView tvDescription;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class PersonDetailsActivity extends Activity {
 		person = new Person(personString);
 
 		tvName = (TextView) findViewById(R.id.tvName);
+		tvDescription = (TextView) findViewById(R.id.tvDescription);
 		tvEmail = (TextView) findViewById(R.id.tvEmail);
 		tvPhoneWork = (TextView) findViewById(R.id.tvPhoneWork);
 		tvAddress = (TextView) findViewById(R.id.tvAddress);
@@ -46,6 +48,7 @@ public class PersonDetailsActivity extends Activity {
 
 	private void updateView() {
 		tvName.setText(person.getName());
+		tvDescription.setText(person.getDesciption());
 		tvEmail.setText(person.getEmail());
 		tvPhoneWork.setText(PhoneNumberUtils.formatNumber(person.getPhoneWork()));
 		tvAddress.setText(person.getAddress());

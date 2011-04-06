@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="ch.almana.android.unibas.perssearch" android:versionCode="201104053" android:versionName="0.4.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="ch.almana.android.unibas.perssearch" android:versionCode="201104054" android:versionName="0.4.1">
 
     <uses-sdk android:minSdkVersion="4" />
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>

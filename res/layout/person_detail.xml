@@ -4,18 +4,19 @@
 	android:orientation="vertical">
 	<TextView android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:id="@+id/tvName"
-		android:textSize="40sp" android:textStyle="bold" android:text="Name"
-		android:paddingBottom="5dp"></TextView>
+		android:textStyle="bold" android:text="Name"
+		android:paddingBottom="5dp" android:textSize="30sp"></TextView>
+	<TextView android:textSize="@dimen/detailTextSize" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/tvDescription" android:text="description" android:paddingBottom="15dp"></TextView>
 	<TextView android:layout_width="wrap_content" android:textSize="@dimen/detailTextSize" android:paddingBottom="5dp"
 		android:layout_height="wrap_content" android:id="@+id/tvEmail"
 		android:text="e-mail" android:autoLink="email"></TextView>
 	<TextView android:layout_width="wrap_content" android:textSize="@dimen/detailTextSize" android:paddingBottom="5dp"
 		android:layout_height="wrap_content" android:id="@+id/tvPhoneWork"
 		android:text="phone work" android:autoLink="phone"></TextView>
-	<TextView android:layout_width="wrap_content" android:textSize="@dimen/detailTextSize" android:paddingBottom="5dp"
+	<TextView android:layout_width="wrap_content" android:paddingBottom="5dp"
 		android:layout_height="wrap_content" android:id="@+id/tvAddress"
 		android:text="Address" android:autoLink="map"></TextView>
 	<TextView android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:paddingTop="20dp"
-		android:text="Debug" android:id="@+id/tvDebug"></TextView>
+		android:text="" android:id="@+id/tvDebug"></TextView>
 </LinearLayout>
