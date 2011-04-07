@@ -14,17 +14,18 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import ch.almana.android.unibas.perssearch.R;
+import ch.almana.android.unibas.perssearch.helper.Logger;
 import ch.almana.android.unibas.perssearch.model.Person;
 import ch.almana.android.unibas.perssearch.model.Person.FieldTypes;
 
-class PersionDetailAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
+class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
 
 	private final PersonDetailsActivity personDetailsActivity;
 	private final Person person;
 	private final LayoutInflater inflater;
 	private List<FieldTypes> fields;
 
-	public PersionDetailAdapter(PersonDetailsActivity personDetailsActivity, Person person) {
+	public PersonDetailAdapter(PersonDetailsActivity personDetailsActivity, Person person) {
 		this.personDetailsActivity = personDetailsActivity;
 		this.person = person;
 		fields = person.getNonblankFields();
@@ -44,7 +45,8 @@ class PersionDetailAdapter extends BaseAdapter implements AdapterView.OnItemClic
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		View view = (convertView != null) ? convertView : createView(parent);
+		// View view = (convertView != null) ? convertView : createView(parent);
+		View view = createView(parent);
 		bindView(view, fields.get(position));
 		return view;
 	}
@@ -53,13 +55,23 @@ class PersionDetailAdapter extends BaseAdapter implements AdapterView.OnItemClic
 		return inflater.inflate(R.layout.person_detail_list_item, parent, false);
 	}
 
+	private void startActivity(Intent intent) {
+		try {
+			personDetailsActivity.startActivity(intent);
+		} catch (Exception e) {
+			Logger.i("Cannot start activity", e);
+		}
+	}
+
 	private void bindView(View view, FieldTypes field) {
 
 		int labelResId;
 		String value;
 		int buttonImageResId = -1;
 		OnClickListener clickListener = null;
+		TextView tvLabel = (TextView) view.findViewById(R.id.tvLabel);
 		TextView tvValue = (TextView) view.findViewById(R.id.tvValue);
+		Button buAction = ((Button) view.findViewById(R.id.buAction));
 
 		switch (field) {
 		case MAIL:
@@ -70,11 +82,9 @@ class PersionDetailAdapter extends BaseAdapter implements AdapterView.OnItemClic
 				@Override
 				public void onClick(View v) {
 					Intent intent = new Intent(Intent.ACTION_SEND);
-					String email = person.getEmail();
-					intent.putExtra(Intent.EXTRA_EMAIL, new String[] { email });
-					// intent.putExtra(Intent.EXTRA_SUBJECT, "test ");
-					// intent.putExtra(Intent.EXTRA_TEXT, " test");
-					personDetailsActivity.startActivity(Intent.createChooser(intent, personDetailsActivity.getString(R.string.email)));
+					intent.putExtra(Intent.EXTRA_EMAIL, new String[] { person.getEmail() });
+					intent.setType("plain/text");
+					startActivity(intent);
 				}
 			};
 			break;
@@ -85,23 +95,24 @@ class PersionDetailAdapter extends BaseAdapter implements AdapterView.OnItemClic
 			clickListener = new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					Intent intent = new Intent(Intent.ACTION_CALL);
+					Intent intent = new Intent(Intent.ACTION_DEFAULT);
 					intent.setData(Uri.parse("tel:" + person.getPhoneWork()));
-					personDetailsActivity.startActivity(intent);
+					startActivity(intent);
 				}
+
 			};
 			break;
 		case ADDRESS:
 			labelResId = R.string.work_address;
 			value = person.getAddress();
 			buttonImageResId = android.R.drawable.ic_menu_directions;
-			tvValue.setLines(5);
+			view.setMinimumHeight(190);
 			clickListener = new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					Intent intent = new Intent(Intent.ACTION_VIEW);
 					intent.setData(Uri.parse("geo:0,0?q=" + person.getAddress()));
-					personDetailsActivity.startActivity(intent);
+					startActivity(intent);
 				}
 			};
 			break;
@@ -112,12 +123,14 @@ class PersionDetailAdapter extends BaseAdapter implements AdapterView.OnItemClic
 			break;
 		}
 
-		((TextView) view.findViewById(R.id.tvLabel)).setText(personDetailsActivity.getString(labelResId));
+		tvLabel.setText(personDetailsActivity.getString(labelResId));
 		tvValue.setText(value);
 		if (buttonImageResId != -1) {
-			Button buAction = ((Button) view.findViewById(R.id.buAction));
+			buAction.setVisibility(View.VISIBLE);
 			buAction.setBackgroundDrawable(personDetailsActivity.getResources().getDrawable(buttonImageResId));
 			buAction.setOnClickListener(clickListener);
+		} else {
+			buAction.setVisibility(View.INVISIBLE);
 		}
 	}
 

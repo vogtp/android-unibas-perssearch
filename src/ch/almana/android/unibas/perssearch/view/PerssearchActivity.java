@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import ch.almana.android.unibas.perssearch.R;
 import ch.almana.android.unibas.perssearch.access.PerssearchLoader;
+import ch.almana.android.unibas.perssearch.helper.Logger;
 
 
 public class PerssearchActivity extends Activity {
@@ -24,6 +25,7 @@ public class PerssearchActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         Intent intent = getIntent();
 
@@ -41,7 +43,10 @@ public class PerssearchActivity extends Activity {
             PersonAdapter wordAdapter = new PersonAdapter(this, PerssearchLoader.getInstance().getMatches(query));
             mList.setAdapter(wordAdapter);
             mList.setOnItemClickListener(wordAdapter);
-        }
+		} else if (Logger.DEBUG && Logger.DUMMY_QUERY) {
+			String query = "patrick vogt";
+			launchPersonActivity(PerssearchLoader.getInstance().getMatches(query).get(0).getJsonString());
+		}
 
         Log.d("dict", intent.toString());
         if (intent.getExtras() != null) {

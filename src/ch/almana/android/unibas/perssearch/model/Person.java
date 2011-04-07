@@ -21,21 +21,21 @@ public class Person {
 	// "givenname":"Patrick","unibaschorgroledisplay":"","employeetype":"","homephone":"",
 	// "unibaschhomemobile":"","edupersonorgunitdn":"ou=urz,ou=units,ou=psearch,dc=unibas,dc=ch"},
 
-
 	public static final Person EMPTY = new Person();
-	
+
 	public static final String NOT_GIVEN = "not given";
-	
+
 	public static final String KEY_NAME = "displayname";
 	public static final String KEY_MAIL = "mail";
-	public static final String KEY_PHONE_WORK = "facsimiletelephonenumber";
+	public static final String KEY_PHONE_WORK = "telephonenumber";
+	public static final String KEY_PHONE_FAX = "facsimiletelephonenumber";
 
 	// private static final String KEY_PHONE_HOME = null;
 	// private static final String KEY_PHONE_MOBILE = null;
 	// private static final String KEY_PHONE_FAX = null;
 	public static final String KEY_ADDRESS = "postaladdress";
 	public static final String KEY_STUDENT_TYPE = "edupersonaffiliation";
-	
+
 	public static enum FieldTypes {
 		MAIL, PHONE_WORK, ADDRESS, STUDENT_TYPE
 	};
@@ -73,6 +73,35 @@ public class Person {
 		}
 	}
 
+	private String getJsonEntryPhone(String keyName) {
+		try {
+			String d = jsonObject.getString(keyName);
+			int idx = d.lastIndexOf("E");
+			if (idx > -1) {
+				StringBuilder s = new StringBuilder();
+				s.append(d.substring(0, 1));
+				s.append(d.substring(2, d.lastIndexOf("E")));
+				d = s.toString();
+			}
+			idx = d.indexOf(" ");
+			if (idx == -1) {
+				int lenght = d.length();
+				StringBuilder s = new StringBuilder(d);
+				if (lenght == 11) {
+					s.insert(2, " ").insert(5, " ").insert(9, " ").insert(12, " ");
+					s.insert(0, "+");
+				} else if (lenght == 9) {
+					s.insert(2, " ").insert(6, " ").insert(9, " ");
+					s.insert(0, "0");
+				}
+				d = s.toString();
+			}
+			return d;
+		} catch (Exception e) {
+			return NOT_GIVEN;
+		}
+	}
+
 	public String getName() {
 		return getJsonEntry(KEY_NAME);
 	}
@@ -82,7 +111,7 @@ public class Person {
 	}
 
 	public String getPhoneWork() {
-		return getJsonEntry(KEY_PHONE_WORK);
+		return getJsonEntryPhone(KEY_PHONE_WORK);
 	}
 
 	// public String getPhoneHome() {
@@ -152,7 +181,7 @@ public class Person {
 
 	public void getDataFields() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public List<FieldTypes> getNonblankFields() {
@@ -172,6 +201,5 @@ public class Person {
 	private boolean hasField(String value) {
 		return value != null && !TextUtils.isEmpty(value.trim()) && !value.equals(Person.NOT_GIVEN);
 	}
-
 
 }

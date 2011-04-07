@@ -41,7 +41,7 @@ public class PerssearchLoader {
 		Logger.v("Loging >" + uri + "<");
 		long start = System.currentTimeMillis();
 		final DefaultHttpClient httpClient = new DefaultHttpClient();
-		HttpUriRequest request = new HttpGet(uri);
+		HttpUriRequest request = new HttpGet(uri + "&sicherheit=schwach");
 		BufferedHttpEntity bhe = null;
 		BufferedReader content = null;
 		try {
@@ -77,7 +77,7 @@ public class PerssearchLoader {
 
 			long duration = System.currentTimeMillis() - start;
 			duration /= 1000l;
-			Logger.w("perssearch search " + duration + " s");
+			Logger.d("perssearch search " + duration + " s");
 		}
 	}
 

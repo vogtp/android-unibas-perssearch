@@ -34,7 +34,7 @@ public class PersonDetailsActivity extends ListActivity {
 		tvName = (TextView) findViewById(R.id.tvName);
 		tvDescription = (TextView) findViewById(R.id.tvDescription);
 
-		getListView().setAdapter(new PersionDetailAdapter(this, person));
+		getListView().setAdapter(new PersonDetailAdapter(this, person));
 		
 		updateView();
     }
