@@ -2,15 +2,14 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <string name="unknown">Unbekannt</string>
+    <string name="email">E-mail</string>
+    <string name="phone_work">Telefon geschäftlich</string>
+    <string name="work_address">Adresse geschäftlich</string>
     <string name="app_name">Perssearch Uni Basel</string>
-
     <string name="search_label">Perssearch</string>
-
     <string name="menu_search">Suche</string>
-
     <string name="search_instructions">Bitten den Such Knopf drücken um Angehörige der Uni Basel zu suchen.</string>
-
     <string name="search_results">Suchresultate für \'<xliff:g id="string">%s</xliff:g>\': </string>
-    
     <string name="search_settings_description">Angehörige der Uni Basel</string>
 </resources>

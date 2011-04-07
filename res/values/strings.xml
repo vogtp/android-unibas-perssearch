@@ -2,8 +2,4 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="unknown">Unknown</string>
-    <string name="email">e-mail</string>
-    <string name="phone_work">phone work</string>
-    <string name="work_address">work address</string>
 </resources>
