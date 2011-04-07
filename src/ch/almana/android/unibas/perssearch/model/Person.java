@@ -192,11 +192,11 @@ public class Person {
 		if (hasField(getPhoneWork())) {
 			fields.add(FieldTypes.PHONE_WORK);
 		}
-		if (hasField(getAddress())) {
-			fields.add(FieldTypes.ADDRESS);
-		}
 		if (hasField(getFaxWork())) {
 			fields.add(FieldTypes.FAX_WORK);
+		}
+		if (hasField(getAddress())) {
+			fields.add(FieldTypes.ADDRESS);
 		}
 		return fields;
 	}
