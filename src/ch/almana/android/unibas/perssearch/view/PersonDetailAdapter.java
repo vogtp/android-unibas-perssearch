@@ -116,6 +116,10 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 				}
 			};
 			break;
+		case FAX_WORK:
+			labelResId = R.string.work_fax;
+			value = person.getFaxWork();
+			break;
 
 		default:
 			labelResId = R.string.unknown;

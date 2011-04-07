@@ -28,7 +28,7 @@ public class Person {
 	public static final String KEY_NAME = "displayname";
 	public static final String KEY_MAIL = "mail";
 	public static final String KEY_PHONE_WORK = "telephonenumber";
-	public static final String KEY_PHONE_FAX = "facsimiletelephonenumber";
+	public static final String KEY_FAX_WORK = "facsimiletelephonenumber";
 
 	// private static final String KEY_PHONE_HOME = null;
 	// private static final String KEY_PHONE_MOBILE = null;
@@ -37,7 +37,7 @@ public class Person {
 	public static final String KEY_STUDENT_TYPE = "edupersonaffiliation";
 
 	public static enum FieldTypes {
-		MAIL, PHONE_WORK, ADDRESS, STUDENT_TYPE
+		MAIL, PHONE_WORK, FAX_WORK, ADDRESS
 	};
 
 	private static final String ADDRESS_SEPARATOR = "$";
@@ -195,11 +195,18 @@ public class Person {
 		if (hasField(getAddress())) {
 			fields.add(FieldTypes.ADDRESS);
 		}
+		if (hasField(getFaxWork())) {
+			fields.add(FieldTypes.FAX_WORK);
+		}
 		return fields;
 	}
 
 	private boolean hasField(String value) {
 		return value != null && !TextUtils.isEmpty(value.trim()) && !value.equals(Person.NOT_GIVEN);
+	}
+
+	public String getFaxWork() {
+		return getJsonEntry(KEY_FAX_WORK);
 	}
 
 }
