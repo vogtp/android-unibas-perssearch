@@ -119,7 +119,7 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 			break;
 		case PHONE_MOBILE:
 			labelResId = R.string.phone_mobile;
-			value = person.getPhoneWork();
+			value = person.getPhoneMobile();
 			buttonImageResId = android.R.drawable.sym_action_call;
 			clickListener = new OnClickListener() {
 				@Override
@@ -133,7 +133,7 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 			break;
 		case PHONE_HOME:
 			labelResId = R.string.phone_home;
-			value = person.getPhoneWork();
+			value = person.getPhoneHome();
 			buttonImageResId = android.R.drawable.sym_action_call;
 			clickListener = new OnClickListener() {
 				@Override
