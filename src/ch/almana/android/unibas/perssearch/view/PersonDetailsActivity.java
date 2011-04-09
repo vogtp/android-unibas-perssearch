@@ -43,8 +43,7 @@ public class PersonDetailsActivity extends ListActivity {
 		buAddContact.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ContactAddHelper cah = new ContactAddHelper(PersonDetailsActivity.this, person);
-				cah.addContact();
+				ContactAddHelper.addContact(PersonDetailsActivity.this, person);
 			}
 		});
 

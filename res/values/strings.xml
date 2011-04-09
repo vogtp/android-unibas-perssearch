@@ -6,5 +6,6 @@
     <string name="phone_mobile">Phone mobile</string>
     <string name="website">Website</string>
     <string name="email_institute">E-mail institute</string>
+    <string name="institute">Institute</string>
 
 </resources>
