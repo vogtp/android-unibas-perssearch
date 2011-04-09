@@ -40,7 +40,7 @@ public class ContactAddHelper {
 	}
 
 	private void setEmailWork() {
-		setEmail(person.getEmail(), Email.TYPE_WORK);
+		setEmail(person.getEmailWork(), Email.TYPE_WORK);
 	}
 
 	private void setEmail(Object email, Object type) {

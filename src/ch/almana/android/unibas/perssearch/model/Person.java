@@ -26,7 +26,8 @@ public class Person {
 	public static final String NOT_GIVEN = "not given";
 
 	public static final String KEY_NAME = "displayname";
-	public static final String KEY_MAIL = "mail";
+	public static final String KEY_MAIL_WORK = "mail";
+	public static final String KEY_MAIL_INSTITUTE = "mailalternateaddress";
 	public static final String KEY_PHONE_WORK = "telephonenumber";
 	public static final String KEY_FAX_WORK = "facsimiletelephonenumber";
 
@@ -35,9 +36,10 @@ public class Person {
 	// private static final String KEY_PHONE_FAX = null;
 	public static final String KEY_ADDRESS = "postaladdress";
 	public static final String KEY_STUDENT_TYPE = "edupersonaffiliation";
+	public static final String KEY_WEBPAGE = "labeleduri";
 
 	public static enum FieldTypes {
-		MAIL, PHONE_WORK, PHONE_MOBILE, PHONE_HOME, FAX_WORK, ADDRESS
+		MAIL_WORK, MAIL_INSTITUTE, PHONE_WORK, PHONE_MOBILE, PHONE_HOME, FAX_WORK, ADDRESS, WEBPAGE
 	};
 
 	private static final String ADDRESS_SEPARATOR = "$";
@@ -110,8 +112,12 @@ public class Person {
 		return getJsonEntry(KEY_NAME);
 	}
 
-	public String getEmail() {
-		return getJsonEntry(KEY_MAIL);
+	public String getEmailWork() {
+		return getJsonEntry(KEY_MAIL_WORK);
+	}
+
+	public String getEmailInstitute() {
+		return getJsonEntry(KEY_MAIL_INSTITUTE);
 	}
 
 	public String getPhoneWork() {
@@ -137,6 +143,10 @@ public class Person {
 		return getJsonEntry(KEY_STUDENT_TYPE);
 	}
 
+	public String getWebpage() {
+		return getJsonEntry(KEY_WEBPAGE);
+	}
+
 	public String[] getValuesAarry() {
 		String ID = "1";// getId();
 		String intentData = jsonString;
@@ -153,7 +163,7 @@ public class Person {
 			}
 		}
 		if (description == NOT_GIVEN || TextUtils.isEmpty(description)) {
-			description = getEmail();
+			description = getEmailWork();
 		}
 		return description;
 	}
@@ -184,8 +194,11 @@ public class Person {
 
 	public List<FieldTypes> getNonblankFields() {
 		ArrayList<FieldTypes> fields = new ArrayList<FieldTypes>();
-		if (hasField(getEmail())) {
-			fields.add(FieldTypes.MAIL);
+		if (hasField(getEmailWork())) {
+			fields.add(FieldTypes.MAIL_WORK);
+		}
+		if (hasField(getEmailInstitute())) {
+			fields.add(FieldTypes.MAIL_INSTITUTE);
 		}
 		if (hasField(getPhoneWork())) {
 			fields.add(FieldTypes.PHONE_WORK);
@@ -201,6 +214,9 @@ public class Person {
 		}
 		if (hasField(getAddress())) {
 			fields.add(FieldTypes.ADDRESS);
+		}
+		if (hasField(getWebpage())) {
+			fields.add(FieldTypes.WEBPAGE);
 		}
 		return fields;
 	}

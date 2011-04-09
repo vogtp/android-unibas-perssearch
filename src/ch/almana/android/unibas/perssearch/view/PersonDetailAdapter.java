@@ -75,15 +75,29 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		Button buAction = ((Button) view.findViewById(R.id.buAction));
 
 		switch (field) {
-		case MAIL:
-			labelResId = R.string.email;
-			value = person.getEmail();
+		case MAIL_WORK:
+			labelResId = R.string.email_work;
+			value = person.getEmailWork();
 			buttonImageResId = android.R.drawable.sym_action_email;
 			clickListener = new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					Intent intent = new Intent(Intent.ACTION_SEND);
-					intent.putExtra(Intent.EXTRA_EMAIL, new String[] { person.getEmail() });
+					intent.putExtra(Intent.EXTRA_EMAIL, new String[] { person.getEmailWork() });
+					intent.setType("plain/text");
+					startActivity(intent);
+				}
+			};
+			break;
+		case MAIL_INSTITUTE:
+			labelResId = R.string.email_institute;
+			value = person.getEmailInstitute();
+			buttonImageResId = android.R.drawable.sym_action_email;
+			clickListener = new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(Intent.ACTION_SEND);
+					intent.putExtra(Intent.EXTRA_EMAIL, new String[] { person.getEmailInstitute() });
 					intent.setType("plain/text");
 					startActivity(intent);
 				}
@@ -125,7 +139,7 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 				@Override
 				public void onClick(View v) {
 					Intent intent = new Intent(Intent.ACTION_DEFAULT);
-					intent.setData(Uri.fromParts("tel:", person.getPhoneMobile(), null));
+					intent.setData(Uri.fromParts("tel:", person.getPhoneHome(), null));
 					startActivity(intent);
 				}
 
@@ -134,7 +148,7 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		case ADDRESS:
 			labelResId = R.string.work_address;
 			value = person.getAddress();
-			buttonImageResId = android.R.drawable.ic_menu_directions;
+			buttonImageResId = android.R.drawable.ic_dialog_map;
 			int height = personDetailsActivity.getTextHeight();
 			int count = 1;
 			int idx = 0;
@@ -157,6 +171,19 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 			labelResId = R.string.work_fax;
 			value = person.getFaxWork();
 			break;
+		case WEBPAGE:
+			labelResId = R.string.website;
+			buttonImageResId = android.R.drawable.ic_menu_mapmode;
+			value = person.getWebpage();
+			clickListener = new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(Intent.ACTION_VIEW);
+					intent.setData(Uri.parse(person.getWebpage()));
+					startActivity(intent);
+				}
+			};
+			break;
 
 		default:
 			labelResId = R.string.unknown;
@@ -173,6 +200,7 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		} else {
 			buAction.setVisibility(View.INVISIBLE);
 		}
+		view.setOnClickListener(clickListener);
 	}
 
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
