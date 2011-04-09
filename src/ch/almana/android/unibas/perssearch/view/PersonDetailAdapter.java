@@ -5,6 +5,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.TextUtils.TruncateAt;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -96,7 +97,35 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 				@Override
 				public void onClick(View v) {
 					Intent intent = new Intent(Intent.ACTION_DEFAULT);
-					intent.setData(Uri.parse("tel:" + person.getPhoneWork()));
+					intent.setData(Uri.fromParts("tel:", person.getPhoneWork(), null));
+					startActivity(intent);
+				}
+
+			};
+			break;
+		case PHONE_MOBILE:
+			labelResId = R.string.phone_mobile;
+			value = person.getPhoneWork();
+			buttonImageResId = android.R.drawable.sym_action_call;
+			clickListener = new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(Intent.ACTION_DEFAULT);
+					intent.setData(Uri.fromParts("tel:",person.getPhoneMobile(),null));
+					startActivity(intent);
+				}
+
+			};
+			break;
+		case PHONE_HOME:
+			labelResId = R.string.phone_home;
+			value = person.getPhoneWork();
+			buttonImageResId = android.R.drawable.sym_action_call;
+			clickListener = new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(Intent.ACTION_DEFAULT);
+					intent.setData(Uri.fromParts("tel:", person.getPhoneMobile(), null));
 					startActivity(intent);
 				}
 
@@ -106,12 +135,20 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 			labelResId = R.string.work_address;
 			value = person.getAddress();
 			buttonImageResId = android.R.drawable.ic_menu_directions;
-			view.setMinimumHeight(190);
+			int height = personDetailsActivity.getTextHeight();
+			int count = 1;
+			int idx = 0;
+			while ((idx = value.indexOf("\n", idx + 1)) != -1) {
+				count++;
+			}
+			tvValue.setMinimumHeight(height * count);
+			tvValue.setEllipsize(TruncateAt.END);
+			view.setMinimumHeight(height * (count + 2));
 			clickListener = new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					Intent intent = new Intent(Intent.ACTION_VIEW);
-					intent.setData(Uri.parse("geo:0,0?q=" + person.getAddress()));
+					intent.setData(Uri.parse("geo:0,0?q=" + person.getStreetCity()));
 					startActivity(intent);
 				}
 			};
@@ -127,7 +164,7 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 			break;
 		}
 
-		tvLabel.setText(personDetailsActivity.getString(labelResId));
+		tvLabel.setText(labelResId);
 		tvValue.setText(value);
 		if (buttonImageResId != -1) {
 			buAction.setVisibility(View.VISIBLE);

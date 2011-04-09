@@ -4,8 +4,6 @@ import android.util.Log;
 
 public class Logger {
 
-	public static boolean DEBUG = false;
-	public static final boolean DUMMY_QUERY = true;
 
 	private static String TAG = "perssearch";
 

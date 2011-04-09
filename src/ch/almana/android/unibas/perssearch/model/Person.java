@@ -30,14 +30,14 @@ public class Person {
 	public static final String KEY_PHONE_WORK = "telephonenumber";
 	public static final String KEY_FAX_WORK = "facsimiletelephonenumber";
 
-	// private static final String KEY_PHONE_HOME = null;
-	// private static final String KEY_PHONE_MOBILE = null;
+	private static final String KEY_PHONE_HOME = "homephone";
+	private static final String KEY_PHONE_MOBILE = "unibaschhomemobile";
 	// private static final String KEY_PHONE_FAX = null;
 	public static final String KEY_ADDRESS = "postaladdress";
 	public static final String KEY_STUDENT_TYPE = "edupersonaffiliation";
 
 	public static enum FieldTypes {
-		MAIL, PHONE_WORK, FAX_WORK, ADDRESS
+		MAIL, PHONE_WORK, PHONE_MOBILE, PHONE_HOME, FAX_WORK, ADDRESS
 	};
 
 	private static final String ADDRESS_SEPARATOR = "$";
@@ -45,6 +45,10 @@ public class Person {
 	private JSONObject jsonObject;
 
 	private String jsonString;
+
+	private String streetCity;
+
+	private String phoneWork;
 
 	public Person(String jsonString) {
 		super();
@@ -111,20 +115,19 @@ public class Person {
 	}
 
 	public String getPhoneWork() {
-		return getJsonEntryPhone(KEY_PHONE_WORK);
+		if (phoneWork == null) {
+			phoneWork = getJsonEntryPhone(KEY_PHONE_WORK);
+		}
+		return phoneWork;
 	}
 
-	// public String getPhoneHome() {
-	// return getJsonEntry(KEY_PHONE_HOME);
-	// }
-	//
-	// public String getPhoneMobile() {
-	// return getJsonEntry(KEY_PHONE_MOBILE);
-	// }
-	//
-	// public String getFax() {
-	// return getJsonEntry(KEY_PHONE_FAX);
-	// }
+	public String getPhoneHome() {
+		return getJsonEntry(KEY_PHONE_HOME);
+	}
+
+	public String getPhoneMobile() {
+		return getJsonEntry(KEY_PHONE_MOBILE);
+	}
 
 	public String getAddress() {
 		return getJsonEntry(KEY_ADDRESS).replace(ADDRESS_SEPARATOR, "\n");
@@ -179,11 +182,6 @@ public class Person {
 		return sb.toString();
 	}
 
-	public void getDataFields() {
-		// TODO Auto-generated method stub
-
-	}
-
 	public List<FieldTypes> getNonblankFields() {
 		ArrayList<FieldTypes> fields = new ArrayList<FieldTypes>();
 		if (hasField(getEmail())) {
@@ -191,6 +189,12 @@ public class Person {
 		}
 		if (hasField(getPhoneWork())) {
 			fields.add(FieldTypes.PHONE_WORK);
+		}
+		if (hasField(getPhoneMobile())) {
+			fields.add(FieldTypes.PHONE_MOBILE);
+		}
+		if (hasField(getPhoneHome())) {
+			fields.add(FieldTypes.PHONE_HOME);
 		}
 		if (hasField(getFaxWork())) {
 			fields.add(FieldTypes.FAX_WORK);
@@ -207,6 +211,15 @@ public class Person {
 
 	public String getFaxWork() {
 		return getJsonEntry(KEY_FAX_WORK);
+	}
+
+	public String getStreetCity() {
+		if (streetCity == null) {
+			String a = getAddress();
+			int idx = a.lastIndexOf("\n", a.lastIndexOf("\n") - 1);
+			streetCity = a.substring(idx + 1, a.length());
+		}
+		return streetCity;
 	}
 
 }

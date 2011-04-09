@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import ch.almana.android.unibas.perssearch.R;
 import ch.almana.android.unibas.perssearch.access.PerssearchLoader;
-import ch.almana.android.unibas.perssearch.helper.Logger;
+import ch.almana.android.unibas.perssearch.helper.Debugger;
 
 
 public class PerssearchActivity extends Activity {
@@ -43,9 +43,15 @@ public class PerssearchActivity extends Activity {
             PersonAdapter wordAdapter = new PersonAdapter(this, PerssearchLoader.getInstance().getMatches(query));
             mList.setAdapter(wordAdapter);
             mList.setOnItemClickListener(wordAdapter);
-		} else if (Logger.DEBUG && Logger.DUMMY_QUERY) {
-			String query = "patrick vogt";
-			launchPersonActivity(PerssearchLoader.getInstance().getMatches(query).get(0).getJsonString());
+		} else if (Debugger.DEBUG) {
+			switch (Debugger.DUMMY_QUERY) {
+			case FIXED_QUERY:
+				launchPersonActivity(PerssearchLoader.getInstance().getMatches(Debugger.QUERY_STRING).get(0).getJsonString());
+				break;
+			case LOCAL_DATA:
+				launchPersonActivity(Debugger.JSON_STRING);
+				break;
+			}
 		}
 
         Log.d("dict", intent.toString());
