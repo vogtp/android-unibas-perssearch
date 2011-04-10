@@ -55,20 +55,13 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		return inflater.inflate(R.layout.person_detail_list_item, parent, false);
 	}
 
-	private void startActivity(Intent intent) {
-		try {
-			personDetailsActivity.startActivity(intent);
-		} catch (Exception e) {
-			Logger.i("Cannot start activity", e);
-		}
-	}
 
 	private void bindView(View view, FieldTypes field) {
 
 		int labelResId;
 		String value;
-		int buttonImageResId = -1;
-		// OnClickListener clickListener = null;
+		int imageResId = -1;
+		int count = 1;
 		TextView tvLabel = (TextView) view.findViewById(R.id.tvLabel);
 		TextView tvValue = (TextView) view.findViewById(R.id.tvValue);
 		ImageView iwAction = ((ImageView) view.findViewById(R.id.iwAction));
@@ -77,116 +70,62 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		case MAIL_WORK:
 			labelResId = R.string.email_work;
 			value = person.getEmailWork();
-			buttonImageResId = android.R.drawable.sym_action_email;
-			// clickListener = new OnClickListener() {
-			// @Override
-			// public void onClick(View v) {
-			// Intent intent = new Intent(Intent.ACTION_SEND);
-			// intent.putExtra(Intent.EXTRA_EMAIL, new String[] {
-			// person.getEmailWork() });
-			// intent.setType("plain/text");
-			// startActivity(intent);
-			// }
-			// };
+			imageResId = android.R.drawable.sym_action_email;
+			break;
+		case MAIL_HOME:
+			labelResId = R.string.email_home;
+			value = person.getEmailHome();
+			imageResId = android.R.drawable.sym_action_email;
 			break;
 		case MAIL_INSTITUTE:
 			labelResId = R.string.email_institute;
 			value = person.getEmailInstitute();
-			buttonImageResId = android.R.drawable.sym_action_email;
-			// clickListener = new OnClickListener() {
-			// @Override
-			// public void onClick(View v) {
-			// Intent intent = new Intent(Intent.ACTION_SEND);
-			// intent.putExtra(Intent.EXTRA_EMAIL, new String[] {
-			// person.getEmailInstitute() });
-			// intent.setType("plain/text");
-			// startActivity(intent);
-			// }
-			// };
+			imageResId = android.R.drawable.sym_action_email;
 			break;
 		case PHONE_WORK:
 			labelResId = R.string.phone_work;
 			value = person.getPhoneWork();
-			buttonImageResId = android.R.drawable.sym_action_call;
-			// clickListener = new OnClickListener() {
-			// @Override
-			// public void onClick(View v) {
-			// Intent intent = new Intent(Intent.ACTION_DEFAULT);
-			// intent.setData(Uri.fromParts("tel:", person.getPhoneWork(),
-			// null));
-			// startActivity(intent);
-			// }
-			//
-			// };
+			imageResId = android.R.drawable.sym_action_call;
 			break;
 		case PHONE_MOBILE:
 			labelResId = R.string.phone_mobile;
 			value = person.getPhoneMobile();
-			buttonImageResId = android.R.drawable.sym_action_call;
-			// clickListener = new OnClickListener() {
-			// @Override
-			// public void onClick(View v) {
-			// Intent intent = new Intent(Intent.ACTION_DEFAULT);
-			// intent.setData(Uri.fromParts("tel:", person.getPhoneMobile(),
-			// null));
-			// startActivity(intent);
-			// }
-			//
-			// };
+			imageResId = android.R.drawable.sym_action_call;
 			break;
 		case PHONE_HOME:
 			labelResId = R.string.phone_home;
 			value = person.getPhoneHome();
-			buttonImageResId = android.R.drawable.sym_action_call;
-			// clickListener = new OnClickListener() {
-			// @Override
-			// public void onClick(View v) {
-			// Intent intent = new Intent(Intent.ACTION_DEFAULT);
-			// intent.setData(Uri.fromParts("tel:", person.getPhoneHome(),
-			// null));
-			// startActivity(intent);
-			// }
-			//
-			// };
+			imageResId = android.R.drawable.sym_action_call;
 			break;
-		case ADDRESS:
-			labelResId = R.string.work_address;
-			value = person.getAddress();
-			buttonImageResId = android.R.drawable.ic_dialog_map;
-			int height = personDetailsActivity.getTextHeight();
-			int count = 1;
+		case ADDRESS_WORK:
+			labelResId = R.string.address_work;
+			value = person.getAddressWork();
+			// buttonImageResId = android.R.drawable.ic_dialog_map;
 			int idx = 0;
 			while ((idx = value.indexOf("\n", idx + 1)) != -1) {
 				count++;
 			}
-			tvValue.setMinimumHeight(height * count);
-			tvValue.setEllipsize(TruncateAt.END);
-			view.setMinimumHeight(height * (count + 2));
-			// clickListener = new OnClickListener() {
-			// @Override
-			// public void onClick(View v) {
-			// Intent intent = new Intent(Intent.ACTION_VIEW);
-			// intent.setData(Uri.parse("geo:0,0?q=" + person.getStreetCity()));
-			// startActivity(intent);
-			// }
-			// };
+			break;
+		case ADDRESS_HOME:
+			labelResId = R.string.address_home;
+			value = person.getAddressHome();
+			int idx2 = 0;
+			while ((idx2 = value.indexOf("\n", idx2 + 1)) != -1) {
+				count++;
+			}
 			break;
 		case FAX_WORK:
-			labelResId = R.string.work_fax;
+			labelResId = R.string.fax_work;
 			value = person.getFaxWork();
+			break;
+		case FAX_HOME:
+			labelResId = R.string.fax_home;
+			value = person.getFaxHome();
 			break;
 		case WEBPAGE:
 			labelResId = R.string.website;
-			buttonImageResId = android.R.drawable.ic_menu_mapmode;
+			// buttonImageResId = android.R.drawable.ic_menu_mapmode;
 			value = person.getWebpage();
-			// clickListener = new OnClickListener() {
-			// @Override
-			// public void onClick(View v) {
-			// Intent intent = new Intent(Intent.ACTION_VIEW);
-			// intent.setData(Uri.parse(person.getWebpage()));
-			// startActivity(intent);
-			// }
-			// };
 			break;
 
 		default:
@@ -197,10 +136,13 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 
 		tvLabel.setText(labelResId);
 		tvValue.setText(value);
-		if (buttonImageResId != -1) {
+		int height = personDetailsActivity.getTextHeight()+2;
+		tvValue.setMinimumHeight(height * count);
+		tvValue.setEllipsize(TruncateAt.END);
+		view.setMinimumHeight(height * (count + 2));
+		if (imageResId != -1) {
 			iwAction.setVisibility(View.VISIBLE);
-			iwAction.setBackgroundDrawable(personDetailsActivity.getResources().getDrawable(buttonImageResId));
-			// buAction.setOnClickListener(clickListener);
+			iwAction.setBackgroundDrawable(personDetailsActivity.getResources().getDrawable(imageResId));
 		} else {
 			iwAction.setVisibility(View.INVISIBLE);
 		}
@@ -212,13 +154,18 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		switch (fields.get(position)) {
 		case MAIL_WORK:
 			intent = new Intent(Intent.ACTION_SEND);
-					intent.putExtra(Intent.EXTRA_EMAIL, new String[] { person.getEmailWork() });
-					intent.setType("plain/text");
+			intent.putExtra(Intent.EXTRA_EMAIL, new String[] { person.getEmailWork() });
+			intent.setType("plain/text");
+			break;
+		case MAIL_HOME:
+			intent = new Intent(Intent.ACTION_SEND);
+			intent.putExtra(Intent.EXTRA_EMAIL, new String[] { person.getEmailHome() });
+			intent.setType("plain/text");
 			break;
 		case MAIL_INSTITUTE:
 			intent = new Intent(Intent.ACTION_SEND);
-					intent.putExtra(Intent.EXTRA_EMAIL, new String[] { person.getEmailInstitute() });
-					intent.setType("plain/text");
+			intent.putExtra(Intent.EXTRA_EMAIL, new String[] { person.getEmailInstitute() });
+			intent.setType("plain/text");
 			break;
 		case PHONE_WORK:
 			intent = new Intent(Intent.ACTION_DEFAULT);
@@ -232,12 +179,17 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 			intent = new Intent(Intent.ACTION_DEFAULT);
 			intent.setData(Uri.parse("tel:" + person.getPhoneHome()));
 			break;
-		case ADDRESS:
+		case ADDRESS_WORK:
 			intent = new Intent(Intent.ACTION_VIEW);
-					intent.setData(Uri.parse("geo:0,0?q=" + person.getStreetCity()));
+			intent.setData(Uri.parse("geo:0,0?q=" + person.getStreetCityWork()));
+			break;
+		case ADDRESS_HOME:
+			intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri.parse("geo:0,0?q=" + person.getAddressHome()));
+			break;
 		case WEBPAGE:
 			intent = new Intent(Intent.ACTION_VIEW);
-					intent.setData(Uri.parse(person.getWebpage()));
+			intent.setData(Uri.parse(person.getWebpage()));
 			break;
 
 		default:
@@ -246,7 +198,7 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		}
 		if (intent != null) {
 			try {
-				startActivity(intent);
+				personDetailsActivity.startActivity(intent);
 			} catch (Exception e) {
 				Logger.w("Could not start field activity", e);
 				// FIXME: toast

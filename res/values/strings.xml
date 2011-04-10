@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="work_fax">Work fax</string>
+    <string name="fax_work">Fax work</string>
+    <string name="fax_home">Fax home</string>
     <string name="phone_home">Phone home</string>
     <string name="phone_mobile">Phone mobile</string>
     <string name="website">Website</string>
     <string name="email_institute">E-mail institute</string>
+    <string name="email_home">E-mail home</string>
     <string name="institute">Institute</string>
+    <string name="address_home">Address home</string>
 
 </resources>

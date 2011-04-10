@@ -4,7 +4,7 @@
 
     <string name="unknown">Unbekannt</string>
     <string name="phone_work">Telefon geschäftlich</string>
-    <string name="work_address">Adresse geschäftlich</string>
+    <string name="address_work">Adresse geschäftlich</string>
     <string name="app_name">Perssearch Uni Basel</string>
     <string name="search_label">Perssearch</string>
     <string name="menu_search">Suche</string>

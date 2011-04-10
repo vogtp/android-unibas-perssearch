@@ -4,7 +4,7 @@
     <string name="unknown">Unknown</string>
     <string name="email_work">E-mail work</string>
     <string name="phone_work">Phone work</string>
-    <string name="work_address">Work address</string>
+    <string name="address_work">Address work</string>
     <string name="app_name">Perssearch Uni Basel</string>
     <string name="search_label">Perssearch</string>
     <string name="menu_search">Search</string>

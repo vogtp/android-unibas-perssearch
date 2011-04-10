@@ -12,34 +12,28 @@ import ch.almana.android.unibas.perssearch.helper.Logger;
 
 public class Person {
 
-	// {"registeredaddress":"","unibaschhomefax":"","homepostaladdress":"","sn":"Vogt",
-	// "postaladdress":"Universitätsrechenzentrum$Klingelbergstrasse 70$CH-4056 Basel",
-	// "dn":"uid=vogtp, ou=people, ou=intern, ou=psearch, dc=unibas, dc=ch","uid":"vogtp",
-	// "facsimiletelephonenumber":"+41 61 267 22 82","unibaschsalutation":"M","labeleduri":"","rating":1.0,
-	// "telephonenumber":4.1612671522E10,"cn":"Patrick Vogt","mail":"Patrick.Vogt@unibas.ch",
-	// "displayname":"Patrick Vogt","unibaschhomemail":"","edupersonaffiliation":"","mailalternateaddress":"",
-	// "givenname":"Patrick","unibaschorgroledisplay":"","employeetype":"","homephone":"",
-	// "unibaschhomemobile":"","edupersonorgunitdn":"ou=urz,ou=units,ou=psearch,dc=unibas,dc=ch"},
-
 	public static final Person EMPTY = new Person();
 
 	public static final String NOT_GIVEN = "not given";
 
 	public static final String KEY_NAME = "displayname";
+	public static final String KEY_FAMILY_NAME = "sn";
+	public static final String KEY_GIVEN_NAME = "givenname";
 	public static final String KEY_MAIL_WORK = "mail";
+	public static final String KEY_MAIL_HOME = "unibaschhomemail";
 	public static final String KEY_MAIL_INSTITUTE = "mailalternateaddress";
 	public static final String KEY_PHONE_WORK = "telephonenumber";
 	public static final String KEY_FAX_WORK = "facsimiletelephonenumber";
-
-	private static final String KEY_PHONE_HOME = "homephone";
-	private static final String KEY_PHONE_MOBILE = "unibaschhomemobile";
-	// private static final String KEY_PHONE_FAX = null;
-	public static final String KEY_ADDRESS = "postaladdress";
+	public static final String KEY_FAX_HOME = "unibaschhomefax";
+	public static final String KEY_PHONE_HOME = "homephone";
+	public static final String KEY_PHONE_MOBILE = "unibaschhomemobile";
+	public static final String KEY_ADDRESS_WORK = "postaladdress";
+	public static final String KEY_ADDRESS_HOME = "homepostaladdress";
 	public static final String KEY_STUDENT_TYPE = "edupersonaffiliation";
 	public static final String KEY_WEBPAGE = "labeleduri";
 
 	public static enum FieldTypes {
-		MAIL_WORK, MAIL_INSTITUTE, PHONE_WORK, PHONE_MOBILE, PHONE_HOME, FAX_WORK, ADDRESS, WEBPAGE
+		MAIL_WORK, MAIL_HOME, MAIL_INSTITUTE, PHONE_WORK, PHONE_MOBILE, PHONE_HOME, FAX_WORK, FAX_HOME, ADDRESS_WORK, ADDRESS_HOME, WEBPAGE
 	};
 
 	private static final String ADDRESS_SEPARATOR = "$";
@@ -48,9 +42,13 @@ public class Person {
 
 	private String jsonString;
 
-	private String streetCity;
+	private String streetCityWork;
 
 	private String phoneWork;
+
+	private String phoneHome;
+
+	private String phoneMobile;
 
 	public Person(String jsonString) {
 		super();
@@ -112,8 +110,19 @@ public class Person {
 		return getJsonEntry(KEY_NAME);
 	}
 
+	public String getFamilyName() {
+		return getJsonEntry(KEY_FAMILY_NAME);
+	}
+
+	public String getGivenName() {
+		return getJsonEntry(KEY_GIVEN_NAME);
+	}
+
 	public String getEmailWork() {
 		return getJsonEntry(KEY_MAIL_WORK);
+	}
+	public String getEmailHome() {
+		return getJsonEntry(KEY_MAIL_HOME);
 	}
 
 	public String getEmailInstitute() {
@@ -128,15 +137,25 @@ public class Person {
 	}
 
 	public String getPhoneHome() {
-		return getJsonEntry(KEY_PHONE_HOME);
+		if (phoneHome == null) {
+			phoneHome = getJsonEntryPhone(KEY_PHONE_HOME);
+		}
+		return phoneHome;
 	}
 
 	public String getPhoneMobile() {
-		return getJsonEntry(KEY_PHONE_MOBILE);
+		if (phoneMobile == null) {
+			phoneMobile = getJsonEntryPhone(KEY_PHONE_MOBILE);
+		}
+		return phoneMobile;
 	}
 
-	public String getAddress() {
-		return getJsonEntry(KEY_ADDRESS).replace(ADDRESS_SEPARATOR, "\n");
+	public String getAddressWork() {
+		return getJsonEntry(KEY_ADDRESS_WORK).replace(ADDRESS_SEPARATOR, "\n");
+	}
+
+	public String getAddressHome() {
+		return getJsonEntry(KEY_ADDRESS_HOME).replace(ADDRESS_SEPARATOR, "\n");
 	}
 
 	public String getStudentType() {
@@ -156,7 +175,7 @@ public class Person {
 	public String getDesciption() {
 		String description = getStudentType();
 		if (description == NOT_GIVEN || TextUtils.isEmpty(description)) {
-			String adr = getJsonEntry(KEY_ADDRESS);
+			String adr = getJsonEntry(KEY_ADDRESS_WORK);
 			int idx = adr.indexOf(ADDRESS_SEPARATOR);
 			if (idx > 0) {
 				description = adr.substring(0, idx);
@@ -197,6 +216,9 @@ public class Person {
 		if (hasField(getEmailWork())) {
 			fields.add(FieldTypes.MAIL_WORK);
 		}
+		if (hasField(getEmailHome())) {
+			fields.add(FieldTypes.MAIL_HOME);
+		}
 		if (hasField(getEmailInstitute())) {
 			fields.add(FieldTypes.MAIL_INSTITUTE);
 		}
@@ -212,8 +234,14 @@ public class Person {
 		if (hasField(getFaxWork())) {
 			fields.add(FieldTypes.FAX_WORK);
 		}
-		if (hasField(getAddress())) {
-			fields.add(FieldTypes.ADDRESS);
+		if (hasField(getFaxHome())) {
+			fields.add(FieldTypes.FAX_HOME);
+		}
+		if (hasField(getAddressWork())) {
+			fields.add(FieldTypes.ADDRESS_WORK);
+		}
+		if (hasField(getAddressHome())) {
+			fields.add(FieldTypes.ADDRESS_HOME);
 		}
 		if (hasField(getWebpage())) {
 			fields.add(FieldTypes.WEBPAGE);
@@ -221,7 +249,7 @@ public class Person {
 		return fields;
 	}
 
-	private boolean hasField(String value) {
+	public static boolean hasField(String value) {
 		return value != null && !TextUtils.isEmpty(value.trim()) && !value.equals(Person.NOT_GIVEN);
 	}
 
@@ -229,13 +257,17 @@ public class Person {
 		return getJsonEntry(KEY_FAX_WORK);
 	}
 
-	public String getStreetCity() {
-		if (streetCity == null) {
-			String a = getAddress();
+	public String getFaxHome() {
+		return getJsonEntry(KEY_FAX_HOME);
+	}
+
+	public String getStreetCityWork() {
+		if (streetCityWork == null) {
+			String a = getAddressWork();
 			int idx = a.lastIndexOf("\n", a.lastIndexOf("\n") - 1);
-			streetCity = a.substring(idx + 1, a.length());
+			streetCityWork = a.substring(idx + 1, a.length());
 		}
-		return streetCity;
+		return streetCityWork;
 	}
 
 }
