@@ -18,6 +18,8 @@ import org.json.JSONObject;
 
 import android.net.Uri;
 import ch.almana.android.unibas.perssearch.helper.Logger;
+import ch.almana.android.unibas.perssearch.helper.Settings;
+import ch.almana.android.unibas.perssearch.helper.Settings.SearchType;
 import ch.almana.android.unibas.perssearch.model.Person;
 
 public class PerssearchLoader {
@@ -81,17 +83,39 @@ public class PerssearchLoader {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Person> getMatches(String query) {
+		return getMatches(query, true);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Person> getMatches(String query, boolean searchAll) {
 		if (query == null) {
 			return Collections.EMPTY_LIST;
 		}
+		SearchType searchType = Settings.getInstance().getSearchType();
+		if (searchAll) {
+			searchType = SearchType.ALL;
+		}
+		String querytype;
+		switch (searchType) {
+		case EMPLOYEES:
+			querytype = "&s=STAFF";
+			break;
+		case STUDENTS:
+			querytype = "&s=STUDS";
+			break;
+
+		default:
+			querytype = "";
+			break;
+		}
+
 		if (query.equals(lastQUery)) {
 			return personsList;
 		}
 		List<Person> list = null;
 		if (query != null && query.trim().length() > 2) {
-			String payload = getUri(PERSSEARCH_QUERY_URL + Uri.encode(query));
+			String payload = getUri(PERSSEARCH_QUERY_URL + Uri.encode(query) + querytype);
 			Logger.d("Got payload: " + payload);
 			try {
 				list = parseJson(payload);
@@ -102,7 +126,22 @@ public class PerssearchLoader {
 		}
 
 		lastQUery = query;
-		personsList = list == null ? Collections.EMPTY_LIST : list;
+		if (list != null) {
+			personsList = list;
+			switch (searchType) {
+			case EMPLOYEES:
+				personsList.add(Person.PERSON_STUDS_TOO);
+				break;
+			case STUDENTS:
+				personsList.add(Person.PERSON_STAFF_TOO);
+				break;
+
+			default:
+				break;
+			}
+		} else {
+			personsList = Collections.EMPTY_LIST;
+		}
 		return personsList;
 	}
 

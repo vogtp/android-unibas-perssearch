@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
     
 
-    <application android:label="@string/app_name" android:icon="@drawable/unibasel_with_bg">
+    <application android:label="@string/app_name" android:icon="@drawable/unibasel_with_bg" android:name=".application.PerssearchApplication">
 
         <activity android:label="@string/app_name"
                 android:theme="@android:style/Theme.NoTitleBar" android:name=".view.PerssearchActivity">
@@ -30,6 +30,7 @@
         <activity android:theme="@android:style/Theme.NoTitleBar" android:name=".view.PersonDetailsActivity"/>
 
         <provider android:syncable="false" android:authorities="perssearch" android:name=".access.PerssearchProvider"/>
+        <activity android:name=".view.SettingsActivity"></activity>
 
     </application>
 </manifest>

@@ -6,8 +6,11 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils.TruncateAt;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import ch.almana.android.unibas.perssearch.R;
+import ch.almana.android.unibas.perssearch.helper.MenuHelper;
 import ch.almana.android.unibas.perssearch.model.Person;
 
 /**
@@ -51,5 +54,17 @@ public class PersonDetailsActivity extends ListActivity {
 
 	public int getTextHeight() {
 		return tvDescription.getHeight() - tvDescription.getPaddingTop() - tvDescription.getPaddingBottom();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuHelper.onCreateOptionsMenu(this, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		MenuHelper.onOptionsItemSelected(this, item);
+		return super.onOptionsItemSelected(item);
 	}
 }

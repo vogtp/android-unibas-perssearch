@@ -13,14 +13,15 @@ import android.widget.TextView;
 import ch.almana.android.unibas.perssearch.R;
 import ch.almana.android.unibas.perssearch.access.PerssearchLoader;
 import ch.almana.android.unibas.perssearch.helper.Debugger;
+import ch.almana.android.unibas.perssearch.helper.MenuHelper;
 
 
 public class PerssearchActivity extends Activity {
 
-    private static final int MENU_SEARCH = 1;
-
-    private TextView mTextView;
+	public static final String EXTRA_SEARCH_ALL = "searchAll";
+	private TextView mTextView;
     private ListView mList;
+	private boolean search;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class PerssearchActivity extends Activity {
         mTextView = (TextView) findViewById(R.id.textField);
         mList = (ListView) findViewById(R.id.list);
 
+		search = true;
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
 			// from click on search results
 			launchPersonActivity(intent.getDataString());
@@ -40,9 +42,10 @@ public class PerssearchActivity extends Activity {
         } else if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             mTextView.setText(getString(R.string.search_results, query));
-            PersonAdapter wordAdapter = new PersonAdapter(this, PerssearchLoader.getInstance().getMatches(query));
-            mList.setAdapter(wordAdapter);
-            mList.setOnItemClickListener(wordAdapter);
+			PersonAdapter personAdapter = new PersonAdapter(this, PerssearchLoader.getInstance().getMatches(query, intent.getExtras().getBoolean(EXTRA_SEARCH_ALL, false)));
+			mList.setAdapter(personAdapter);
+			mList.setOnItemClickListener(personAdapter);
+			search = false;
 		} else if (Debugger.DEBUG) {
 			switch (Debugger.DUMMY_QUERY) {
 			case FIXED_QUERY:
@@ -60,45 +63,23 @@ public class PerssearchActivity extends Activity {
         }
     }
 
-	// @Override
-	// protected void onResume() {
-	// super.onResume();
-	// KeyEvent eventUp = new KeyEvent(KeyEvent.ACTION_UP,
-	// KeyEvent.KEYCODE_SEARCH);
-	// KeyEvent eventDown = new KeyEvent(KeyEvent.ACTION_DOWN,
-	// KeyEvent.KEYCODE_SEARCH);
-	// DispatcherState state = new DispatcherState();
-	// state.startTracking(eventDown, this);
-	// state.handleUpEvent(eventDown);
-	// // eventDown.dispatch(this, state, this);
-	// //
-	// // eventUp.dispatch(this, state, this);
-	//
-	// // google: getKeyDispatcherState().startTracking(event, this);
-	//
-	// // getWindow().superDispatchKeyEvent(event);
-	// // dispatchKeyEvent(event);
-	// // KeyEvent.KEYCODE_SEARCH));
-	// // onKeyUp(KeyEvent.KEYCODE_SEARCH, new KeyEvent(KeyEvent.ACTION_UP,
-	// // KeyEvent.KEYCODE_SEARCH));
-	// }
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (search) {
+			onSearchRequested();
+		}
+	}
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, MENU_SEARCH, 0, R.string.menu_search)
-                .setIcon(android.R.drawable.ic_search_category_default)
-                .setAlphabeticShortcut(SearchManager.MENU_KEY);
-
+		MenuHelper.onCreateOptionsMenu(this, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case MENU_SEARCH:
-                onSearchRequested();
-                return true;
-        }
+		MenuHelper.onOptionsItemSelected(this, item);
         return super.onOptionsItemSelected(item);
     }
 
@@ -108,4 +89,5 @@ public class PerssearchActivity extends Activity {
 		next.putExtra(PersonDetailsActivity.EXTRA_ID, personId);
         startActivity(next);
     }
+
 }

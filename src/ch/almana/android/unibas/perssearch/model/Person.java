@@ -38,6 +38,9 @@ public class Person {
 
 	private static final String ADDRESS_SEPARATOR = "$";
 
+	public static final Person PERSON_STUDS_TOO = new Person("{displayname=\"Show students too\" edupersonaffiliation=\"Search again with all results included\"}");
+	public static final Person PERSON_STAFF_TOO = new Person("{displayname=\"Show staff too\" edupersonaffiliation=\\\"Search again with all results included\\\"}");
+
 	private JSONObject jsonObject;
 
 	private String jsonString;

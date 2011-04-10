@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="menuSettings">Settings</string>
 
+<string name="prefSearchType">Search Type</string>
+
+<string name="prefSearchTypeLong">Search for all, only staff or students</string>
+
+<string-array name="prefSearchTypeEntries">
+		<item>All</item>
+		<item>Staff only</item>
+		<item>Students only</item>
+</string-array>
+<string-array name="prefSearchTypeValues">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+</string-array>
 </resources>

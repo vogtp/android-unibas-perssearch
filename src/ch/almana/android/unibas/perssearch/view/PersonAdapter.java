@@ -3,6 +3,7 @@ package ch.almana.android.unibas.perssearch.view;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,14 @@ class PersonAdapter extends BaseAdapter implements AdapterView.OnItemClickListen
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		this.perssearchActivity.launchPersonActivity(persons.get(position).getJsonString());
+		Person person = persons.get(position);
+		if (person == Person.PERSON_STAFF_TOO || person == Person.PERSON_STUDS_TOO) {
+			Intent i = new Intent(perssearchActivity, PerssearchActivity.class);
+			i.setAction(Intent.ACTION_SEARCH);
+			i.putExtra(PerssearchActivity.EXTRA_SEARCH_ALL, true);
+			perssearchActivity.startActivity(i);
+		} else {
+			this.perssearchActivity.launchPersonActivity(person.getJsonString());
+		}
     }
 }

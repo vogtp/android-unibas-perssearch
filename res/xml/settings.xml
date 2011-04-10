@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference android:entryValues="@array/prefSearchTypeValues" android:title="@string/prefSearchType" android:entries="@array/prefSearchTypeEntries" android:summary="@string/prefSearchTypeLong" android:key="prefKeySearchType" android:defaultValue="0"></ListPreference>
+</PreferenceScreen>
