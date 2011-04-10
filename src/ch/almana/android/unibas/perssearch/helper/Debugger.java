@@ -15,7 +15,7 @@ public class Debugger {
 			+ "\"homepostaladdress\":\"Name der privaten Addresse$Privat Zusatz 1$Privat Zusatz 2$Privatestrasse 11$ch-4321 Basel\","
 			+ "\"sn\":\"Vogt\",\"postaladdress\":\"Test institut$Abteilung Tests$Gruppe für Tests$Teststrasse 1$CH-4000 Basel\","
 			+ "\"dn\":\"uid=vogtpa, ou=people, ou=intern, ou=psearch, dc=unibas, dc=ch\",\"uid\":\"vogtpa\","
-			+ "\"facsimiletelephonenumber\":\"061 222 22 22\",\"unibaschsalutation\":\"M\",\"labeleduri\":\"http:\\/\\/example.com\","
+			+ "\"facsimiletelephonenumber\":\"061 222 22 22\",\"unibaschsalutation\":\"M\",\"labeleduri\":\"http:\\/\\/example.com\\/mitEinerWirklichLangenErweiterungundeinifenparamteren\","
 			+ "\"rating\":0.0,\"telephonenumber\":\"061 111 11 11\",\"cn\":\"Patrick S. Vogt\",\"mail\":\"P.Vogt@unibas.ch\","
 			+ "\"displayname\":\"Patrick S. Vogt\",\"unibaschhomemail\":\"p.vogt@gmul.ch\",\"edupersonaffiliation\":\"\","
 			+ "\"mailalternateaddress\":\"Pa.Vogt@unibas.ch\",\"givenname\":\"Patrick S.\",\"unibaschorgroledisplay\":\"\","
