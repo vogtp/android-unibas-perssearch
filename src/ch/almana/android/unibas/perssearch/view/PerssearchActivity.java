@@ -60,7 +60,30 @@ public class PerssearchActivity extends Activity {
         }
     }
 
-    @Override
+	// @Override
+	// protected void onResume() {
+	// super.onResume();
+	// KeyEvent eventUp = new KeyEvent(KeyEvent.ACTION_UP,
+	// KeyEvent.KEYCODE_SEARCH);
+	// KeyEvent eventDown = new KeyEvent(KeyEvent.ACTION_DOWN,
+	// KeyEvent.KEYCODE_SEARCH);
+	// DispatcherState state = new DispatcherState();
+	// state.startTracking(eventDown, this);
+	// state.handleUpEvent(eventDown);
+	// // eventDown.dispatch(this, state, this);
+	// //
+	// // eventUp.dispatch(this, state, this);
+	//
+	// // google: getKeyDispatcherState().startTracking(event, this);
+	//
+	// // getWindow().superDispatchKeyEvent(event);
+	// // dispatchKeyEvent(event);
+	// // KeyEvent.KEYCODE_SEARCH));
+	// // onKeyUp(KeyEvent.KEYCODE_SEARCH, new KeyEvent(KeyEvent.ACTION_UP,
+	// // KeyEvent.KEYCODE_SEARCH));
+	// }
+
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0, MENU_SEARCH, 0, R.string.menu_search)
                 .setIcon(android.R.drawable.ic_search_category_default)
