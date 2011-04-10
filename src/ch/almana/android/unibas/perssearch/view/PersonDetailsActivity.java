@@ -5,6 +5,7 @@ package ch.almana.android.unibas.perssearch.view;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils.TruncateAt;
 import android.widget.TextView;
 import ch.almana.android.unibas.perssearch.R;
 import ch.almana.android.unibas.perssearch.model.Person;
@@ -33,6 +34,9 @@ public class PersonDetailsActivity extends ListActivity {
 
 		tvName = (TextView) findViewById(R.id.tvName);
 		tvDescription = (TextView) findViewById(R.id.tvDescription);
+		
+		tvDescription.setLines(1);
+		tvDescription.setEllipsize(TruncateAt.END);
 
 		PersonDetailAdapter personDetailAdapter = new PersonDetailAdapter(this, person);
 		getListView().setAdapter(personDetailAdapter);

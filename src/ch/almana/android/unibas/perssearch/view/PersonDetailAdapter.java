@@ -138,6 +138,7 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		tvValue.setText(value);
 		int height = personDetailsActivity.getTextHeight()+2;
 		tvValue.setMinimumHeight(height * count);
+		tvValue.setLines(count);
 		tvValue.setEllipsize(TruncateAt.END);
 		view.setMinimumHeight(height * (count + 2));
 		if (imageResId != -1) {
