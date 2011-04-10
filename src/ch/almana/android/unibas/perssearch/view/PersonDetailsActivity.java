@@ -47,8 +47,9 @@ public class PersonDetailsActivity extends ListActivity {
 			}
 		});
 
-		getListView().setAdapter(new PersonDetailAdapter(this, person));
-		
+		PersonDetailAdapter personDetailAdapter = new PersonDetailAdapter(this, person);
+		getListView().setAdapter(personDetailAdapter);
+		getListView().setOnItemClickListener(personDetailAdapter);
 		updateView();
     }
 
