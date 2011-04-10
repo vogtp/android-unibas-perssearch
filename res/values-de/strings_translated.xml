@@ -11,4 +11,14 @@
     <string name="search_instructions">Bitten den Such Knopf drücken um Angehörige der Uni Basel zu suchen.</string>
     <string name="search_results">Suchresultate für \'<xliff:g id="string">%s</xliff:g>\': </string>
     <string name="search_settings_description">Angehörige der Uni Basel</string>
+    <string name="email_work">E-mail geschäftlich</string>
+    <string name="fax_work">Fax geschäftlich</string>
+    <string name="fax_home">Fax privat</string>
+    <string name="phone_home">Telefon privat</string>
+    <string name="phone_mobile">Telefon mobil</string>
+    <string name="website">Webseite</string>
+    <string name="email_institute">E-mail Institut</string>
+    <string name="email_home">E-mail privat</string>
+    <string name="institute">Institut</string>
+    <string name="address_home">Adresse privat</string>
 </resources>
