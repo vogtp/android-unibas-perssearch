@@ -1,4 +1,3 @@
 /gen
 /bin
-/bin/
-bin/
+/bin/*
