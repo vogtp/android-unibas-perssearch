@@ -2,6 +2,7 @@ package ch.almana.android.unibas.perssearch.view;
 
 import java.util.List;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TwoLineListItem;
+import ch.almana.android.unibas.perssearch.model.DummyPerson;
 import ch.almana.android.unibas.perssearch.model.Person;
 
 class PersonAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
@@ -63,10 +65,12 @@ class PersonAdapter extends BaseAdapter implements AdapterView.OnItemClickListen
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Person person = persons.get(position);
-		if (person == Person.PERSON_STAFF_TOO || person == Person.PERSON_STUDS_TOO) {
+		if (person instanceof DummyPerson) {
+			DummyPerson dummy = (DummyPerson) person;
 			Intent i = new Intent(perssearchActivity, PerssearchActivity.class);
 			i.setAction(Intent.ACTION_SEARCH);
 			i.putExtra(PerssearchActivity.EXTRA_SEARCH_ALL, true);
+			i.putExtra(SearchManager.QUERY, dummy.getQuery());
 			perssearchActivity.startActivity(i);
 		} else {
 			this.perssearchActivity.launchPersonActivity(person.getJsonString());

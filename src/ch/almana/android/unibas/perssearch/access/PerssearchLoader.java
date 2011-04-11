@@ -20,12 +20,14 @@ import android.net.Uri;
 import ch.almana.android.unibas.perssearch.helper.Logger;
 import ch.almana.android.unibas.perssearch.helper.Settings;
 import ch.almana.android.unibas.perssearch.helper.Settings.SearchType;
+import ch.almana.android.unibas.perssearch.model.DummyPerson;
 import ch.almana.android.unibas.perssearch.model.Person;
 
 public class PerssearchLoader {
 
 
 	private static final String PERSSEARCH_QUERY_URL = "https://perssearch.unibas.ch/?Json=1&query=";
+	private static final String PERSSEARCH_QUERY_URL_POST = "https://perssearch.unibas.ch/?Json=1";
 	private static final PerssearchLoader instance = new PerssearchLoader();
 
 	private List<Person> personsList;
@@ -43,6 +45,12 @@ public class PerssearchLoader {
 		Logger.v("Loging >" + uri + "<");
 		long start = System.currentTimeMillis();
 		final DefaultHttpClient httpClient = new DefaultHttpClient();
+		// HttpPost request = new HttpPost(PERSSEARCH_QUERY_URL_POST);
+		// HttpParams params = request.getParams();
+		// params.setParameter("query", "vogt");
+		// params.setIntParameter("Json", 1);
+		// params.setParameter("s", "STAFF");
+		// params.setParameter("sicherheit", "schwach");
 		HttpUriRequest request = new HttpGet(uri + "&sicherheit=schwach");
 		BufferedHttpEntity bhe = null;
 		BufferedReader content = null;
@@ -128,12 +136,17 @@ public class PerssearchLoader {
 		lastQUery = query;
 		if (list != null) {
 			personsList = list;
+			DummyPerson dummy;
 			switch (searchType) {
 			case EMPLOYEES:
-				personsList.add(Person.PERSON_STUDS_TOO);
+				dummy = DummyPerson.PERSON_STUDS_TOO;
+				dummy.setQuery(query);
+				personsList.add(dummy);
 				break;
 			case STUDENTS:
-				personsList.add(Person.PERSON_STAFF_TOO);
+				dummy = DummyPerson.PERSON_STAFF_TOO;
+				dummy.setQuery(query);
+				personsList.add(dummy);
 				break;
 
 			default:
