@@ -14,6 +14,7 @@ import ch.almana.android.unibas.perssearch.R;
 import ch.almana.android.unibas.perssearch.access.PerssearchLoader;
 import ch.almana.android.unibas.perssearch.helper.Debugger;
 import ch.almana.android.unibas.perssearch.helper.MenuHelper;
+import ch.almana.android.unibas.perssearch.helper.Settings;
 
 
 public class PerssearchActivity extends Activity {
@@ -41,8 +42,20 @@ public class PerssearchActivity extends Activity {
             finish();
         } else if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            mTextView.setText(getString(R.string.search_results, query));
-			PersonAdapter personAdapter = new PersonAdapter(this, PerssearchLoader.getInstance().getMatches(this, query, intent.getExtras().getBoolean(EXTRA_SEARCH_ALL, false)));
+			boolean searchAll = intent.getExtras().getBoolean(EXTRA_SEARCH_ALL, false);
+			String type = getResources().getStringArray(R.array.prefSearchTypeEntries)[0];
+			if (!searchAll) {
+				switch (Settings.getInstance().getSearchType()) {
+				case STAFF:
+					type = getResources().getStringArray(R.array.prefSearchTypeEntries)[1];
+					break;
+				case STUDENTS:
+					type = getResources().getStringArray(R.array.prefSearchTypeEntries)[2];
+					break;
+				}
+			}
+			mTextView.setText(getString(R.string.search_results, query, type));
+			PersonAdapter personAdapter = new PersonAdapter(this, PerssearchLoader.getInstance().getMatches(this, query, searchAll));
 			mList.setAdapter(personAdapter);
 			mList.setOnItemClickListener(personAdapter);
 			search = false;
