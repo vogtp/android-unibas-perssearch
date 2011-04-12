@@ -42,14 +42,14 @@ public class PerssearchActivity extends Activity {
         } else if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             mTextView.setText(getString(R.string.search_results, query));
-			PersonAdapter personAdapter = new PersonAdapter(this, PerssearchLoader.getInstance().getMatches(query, intent.getExtras().getBoolean(EXTRA_SEARCH_ALL, false)));
+			PersonAdapter personAdapter = new PersonAdapter(this, PerssearchLoader.getInstance().getMatches(this, query, intent.getExtras().getBoolean(EXTRA_SEARCH_ALL, false)));
 			mList.setAdapter(personAdapter);
 			mList.setOnItemClickListener(personAdapter);
 			search = false;
 		} else if (Debugger.DEBUG) {
 			switch (Debugger.DUMMY_QUERY) {
 			case FIXED_QUERY:
-				launchPersonActivity(PerssearchLoader.getInstance().getMatches(Debugger.QUERY_STRING).get(0).getJsonString());
+				launchPersonActivity(PerssearchLoader.getInstance().getMatches(this, Debugger.QUERY_STRING).get(0).getJsonString());
 				break;
 			case LOCAL_DATA:
 				launchPersonActivity(Debugger.JSON_STRING);

@@ -20,4 +20,15 @@
     <string name="email_home">E-mail home</string>
     <string name="institute">Institute</string>
     <string name="address_home">Address home</string>
+	<string name="menuSettings">Settings</string>
+	<string name="prefSearchType">Search Type</string>
+	<string name="prefSearchTypeLong">Search for all,  staff only or students only</string>
+	<string-array name="prefSearchTypeEntries">
+		<item>All</item>
+		<item>Staff only</item>
+		<item>Students only</item>
+	</string-array>
+	<string name="label_search_all_included">Search again with all results included</string>
+	<string name="label_staff_too">Staff too</string>
+	<string name="label_students_too">Students too</string>
 </resources>

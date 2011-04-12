@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+	<string name="menuSettings">Einstellungen</string>
+	<string name="prefSearchType">Suchtyp</string>
+	<string name="prefSearchTypeLong">Suche alle Personen oder nur Angestellte/Dozenten respektive Studenten</string>
+	<string-array name="prefSearchTypeEntries">
+		<item>Alle Personen</item>
+		<item>Nur Angestellte/Dozenten</item>
+		<item>Nur Studenten</item>
+	</string-array>
+	<string name="label_search_all_included">Neu suchen und alle Personen einbeziehen</string>
+	<string name="label_staff_too">Angestellte/Dozenten einbeziehen</string>
+	<string name="label_students_too">Studenten einbeziehen</string>
     <string name="unknown">Unbekannt</string>
     <string name="phone_work">Telefon geschäftlich</string>
     <string name="address_work">Adresse geschäftlich</string>

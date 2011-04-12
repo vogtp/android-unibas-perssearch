@@ -16,11 +16,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.net.Uri;
 import ch.almana.android.unibas.perssearch.helper.Logger;
 import ch.almana.android.unibas.perssearch.helper.Settings;
 import ch.almana.android.unibas.perssearch.helper.Settings.SearchType;
 import ch.almana.android.unibas.perssearch.model.DummyPerson;
+import ch.almana.android.unibas.perssearch.model.DummyPerson.DummyType;
 import ch.almana.android.unibas.perssearch.model.Person;
 
 public class PerssearchLoader {
@@ -31,7 +33,7 @@ public class PerssearchLoader {
 	private static final PerssearchLoader instance = new PerssearchLoader();
 
 	private List<Person> personsList;
-	private String lastQUery;
+	private String lastQuery;
 
 	public static PerssearchLoader getInstance() {
 		return instance;
@@ -42,7 +44,7 @@ public class PerssearchLoader {
 	}
 
 	private String getUri(String uri) {
-		Logger.v("Loging >" + uri + "<");
+		Logger.v("Loading >" + uri + "<");
 		long start = System.currentTimeMillis();
 		final DefaultHttpClient httpClient = new DefaultHttpClient();
 		// HttpPost request = new HttpPost(PERSSEARCH_QUERY_URL_POST);
@@ -91,26 +93,26 @@ public class PerssearchLoader {
 		}
 	}
 
-	public List<Person> getMatches(String query) {
-		return getMatches(query, true);
+	public List<Person> getMatches(Context ctx, String query) {
+		return getMatches(ctx, query, true);
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Person> getMatches(String query, boolean searchAll) {
+	public List<Person> getMatches(Context ctx, String query, boolean searchAll) {
 		if (query == null) {
 			return Collections.EMPTY_LIST;
 		}
-		SearchType searchType = Settings.getInstance().getSearchType();
-		if (searchAll) {
-			searchType = SearchType.ALL;
+		SearchType searchType = SearchType.ALL;
+		if (!searchAll) {
+			searchType = Settings.getInstance().getSearchType();
 		}
 		String querytype;
 		switch (searchType) {
-		case EMPLOYEES:
+		case STAFF:
 			querytype = "&s=STAFF";
 			break;
 		case STUDENTS:
-			querytype = "&s=STUDS";
+			querytype = "&s=STUD";
 			break;
 
 		default:
@@ -118,7 +120,8 @@ public class PerssearchLoader {
 			break;
 		}
 
-		if (query.equals(lastQUery)) {
+		String newQuery = query + querytype;
+		if (newQuery.equals(lastQuery)) {
 			return personsList;
 		}
 		List<Person> list = null;
@@ -133,23 +136,20 @@ public class PerssearchLoader {
 			}
 		}
 
-		lastQUery = query;
+		lastQuery = newQuery;
 		if (list != null) {
 			personsList = list;
 			DummyPerson dummy;
 			switch (searchType) {
-			case EMPLOYEES:
-				dummy = DummyPerson.PERSON_STUDS_TOO;
+			case STAFF:
+				dummy = DummyPerson.getDummy(ctx, DummyType.STUD_TOO);
 				dummy.setQuery(query);
 				personsList.add(dummy);
 				break;
 			case STUDENTS:
-				dummy = DummyPerson.PERSON_STAFF_TOO;
+				dummy = DummyPerson.getDummy(ctx, DummyType.STAFF_TOO);
 				dummy.setQuery(query);
 				personsList.add(dummy);
-				break;
-
-			default:
 				break;
 			}
 		} else {

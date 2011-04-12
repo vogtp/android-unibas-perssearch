@@ -7,10 +7,10 @@ import android.preference.PreferenceManager;
 public class Settings {
 
 	public enum SearchType {
-		ALL, EMPLOYEES, STUDENTS
+		ALL, STAFF, STUDENTS
 	}
 
-	private static final String TYPE_EPLOYEES = "1";
+	private static final String TYPE_STAFF = "1";
 	private static final String TYPE_STUDENTS = "2";
 
 	private static Settings instance;
@@ -37,8 +37,8 @@ public class Settings {
 
 	public SearchType getSearchType() {
 		String seachType = getPreferences().getString("prefKeySearchType", "0");
-		if (TYPE_EPLOYEES.equals(seachType)) {
-			return SearchType.EMPLOYEES;
+		if (TYPE_STAFF.equals(seachType)) {
+			return SearchType.STAFF;
 		} else if (TYPE_STUDENTS.equals(seachType)) {
 			return SearchType.STUDENTS;
 		}

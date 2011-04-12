@@ -99,7 +99,7 @@ public class PerssearchProvider extends ContentProvider {
 
     private Cursor getSuggestions(String query, String[] projection) {
         String processedQuery = query == null ? "" : query.toLowerCase();
-		List<Person> persons = PerssearchLoader.getInstance().getMatches(processedQuery);
+		List<Person> persons = PerssearchLoader.getInstance().getMatches(getContext(), processedQuery);
 
         MatrixCursor cursor = new MatrixCursor(COLUMNS);
 		for (Person person : persons) {
