@@ -1,7 +1,5 @@
 package ch.almana.android.unibas.perssearch.view;
 
-
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.ListActivity;
@@ -14,6 +12,7 @@ import android.widget.TextView;
 import ch.almana.android.unibas.perssearch.R;
 import ch.almana.android.unibas.perssearch.contacts.ContactManager;
 import ch.almana.android.unibas.perssearch.helper.MenuHelper;
+import ch.almana.android.unibas.perssearch.helper.Settings;
 import ch.almana.android.unibas.perssearch.model.Person;
 
 /**
@@ -30,9 +29,13 @@ public class PersonDetailsActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.person_detail);
-
-
+		if (Settings.getInstance().getAppAppearance() == Settings.APP_APPEARIANCE_ANDROID) {
+			setTheme(R.style.android);
+			setContentView(R.layout.person_detail_android);
+		} else {
+			setTheme(R.style.unibas_turquoise);
+			setContentView(R.layout.person_detail_unibas);
+		}
         Intent intent = getIntent();
 		String personString = intent.getStringExtra(EXTRA_ID);
 

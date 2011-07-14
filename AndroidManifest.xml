@@ -12,7 +12,7 @@
     <application android:label="@string/app_name" android:name=".application.PerssearchApplication" android:icon="@drawable/perssearch">
 
         <activity android:label="@string/app_name"
-                android:theme="@android:style/Theme.NoTitleBar" android:name=".view.PerssearchActivity" android:allowTaskReparenting="true">
+                android:name=".view.PerssearchActivity" android:allowTaskReparenting="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +29,7 @@
                     android:resource="@xml/searchable"/>
         </activity>
 
-        <activity android:theme="@android:style/Theme.NoTitleBar" android:name=".view.PersonDetailsActivity" android:allowTaskReparenting="true"/>
+        <activity android:name=".view.PersonDetailsActivity" android:allowTaskReparenting="true"/>
 
         <provider android:syncable="false" android:authorities="perssearch" android:name=".access.PerssearchProvider"/>
         <activity android:name=".view.SettingsActivity" android:allowTaskReparenting="true"></activity>

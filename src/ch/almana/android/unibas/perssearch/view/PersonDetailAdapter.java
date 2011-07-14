@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.text.TextUtils.TruncateAt;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import ch.almana.android.unibas.perssearch.R;
 import ch.almana.android.unibas.perssearch.helper.Logger;
+import ch.almana.android.unibas.perssearch.helper.Settings;
 import ch.almana.android.unibas.perssearch.model.Person;
 import ch.almana.android.unibas.perssearch.model.Person.FieldTypes;
 
@@ -23,7 +25,7 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 	private final PersonDetailsActivity personDetailsActivity;
 	private final Person person;
 	private final LayoutInflater inflater;
-	private List<FieldTypes> fields;
+	private final List<FieldTypes> fields;
 
 	public PersonDetailAdapter(PersonDetailsActivity personDetailsActivity, Person person) {
 		this.personDetailsActivity = personDetailsActivity;
@@ -32,18 +34,22 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		inflater = (LayoutInflater) personDetailsActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
+	@Override
 	public int getCount() {
 		return fields.size();
 	}
 
+	@Override
 	public Object getItem(int position) {
 		return position;
 	}
 
+	@Override
 	public long getItemId(int position) {
 		return position;
 	}
 
+	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// View view = (convertView != null) ? convertView : createView(parent);
 		View view = createView(parent);
@@ -147,9 +153,13 @@ class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		} else {
 			iwAction.setVisibility(View.INVISIBLE);
 		}
-
+		if (Settings.getInstance().getAppAppearance() == Settings.APP_APPEARIANCE_UNIBAS_TURQUISE) {
+			tvLabel.setTextColor(Color.LTGRAY);
+			tvValue.setTextColor(Color.BLACK);
+		}
 	}
 
+	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Intent intent;
 		switch (fields.get(position)) {

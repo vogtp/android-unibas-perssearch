@@ -31,7 +31,15 @@ public class PerssearchActivity extends Activity {
 
         Intent intent = getIntent();
 
-        setContentView(R.layout.main);
+		if (Settings.getInstance().getAppAppearance() == Settings.APP_APPEARIANCE_ANDROID) {
+			setTheme(R.style.android);
+			setContentView(R.layout.main_android);
+		} else {
+			setTheme(R.style.unibas_turquoise);
+			setContentView(R.layout.main_unibas);
+		}
+        
+
         mTextView = (TextView) findViewById(R.id.textField);
         mList = (ListView) findViewById(R.id.list);
 

@@ -13,8 +13,11 @@ public class Settings {
 	private static final String TYPE_STAFF = "1";
 	private static final String TYPE_STUDENTS = "2";
 
+	public static final int APP_APPEARIANCE_UNIBAS_TURQUISE = 1;
+	public static final int APP_APPEARIANCE_ANDROID = 2;
+
 	private static Settings instance;
-	private Context ctx;
+	private final Context ctx;
 
 	public Settings(Context ctx) {
 		super();
@@ -43,6 +46,14 @@ public class Settings {
 			return SearchType.STUDENTS;
 		}
 		return SearchType.ALL;
+	}
+
+	public int getAppAppearance() {
+		try {
+			return Integer.parseInt(getPreferences().getString("prefKeyAppAppearance", "1"));
+		} catch (NumberFormatException e) {
+			return 1;
+		}
 	}
 
 }

@@ -7,10 +7,10 @@
 		android:orientation="vertical" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_weight="1">
 		<TextView android:layout_height="wrap_content" android:text="TextView"
-			android:layout_width="fill_parent" android:textStyle="bold"
+			android:layout_width="fill_parent"
 			android:id="@+id/tvLabel" android:layout_marginLeft="5dp"
-			android:layout_marginTop="5dp" android:textSize="17sp"></TextView>
-		<TextView android:text="TextView" android:id="@+id/tvValue"
+			android:layout_marginTop="5dp"></TextView>
+		<TextView android:text="TextView" android:id="@+id/tvValue" android:textStyle="bold"
 			android:layout_marginLeft="5dp" android:layout_marginBottom="10dp"
 			android:layout_height="fill_parent" android:layout_width="fill_parent"
 			android:layout_weight=".1" ></TextView>
