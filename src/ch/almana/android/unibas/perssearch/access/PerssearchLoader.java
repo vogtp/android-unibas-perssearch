@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -53,7 +53,7 @@ public class PerssearchLoader {
 		// params.setIntParameter("Json", 1);
 		// params.setParameter("s", "STAFF");
 		// params.setParameter("sicherheit", "schwach");
-		HttpUriRequest request = new HttpGet(uri + "&sicherheit=schwach");
+		HttpUriRequest request = new HttpPost(uri + "&sicherheit=schwach");
 		BufferedHttpEntity bhe = null;
 		BufferedReader content = null;
 		try {

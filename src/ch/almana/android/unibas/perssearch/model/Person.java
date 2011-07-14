@@ -152,11 +152,19 @@ public class Person {
 	}
 
 	public String getAddressWork() {
-		return getJsonEntry(KEY_ADDRESS_WORK).replace(ADDRESS_SEPARATOR, "\n");
+		return formatAddress(KEY_ADDRESS_WORK);
+	}
+
+	private String formatAddress(String keyAddressWork) {
+		String adr = getJsonEntry(keyAddressWork);
+		if (adr != null) {
+			adr = adr.replace(ADDRESS_SEPARATOR, "\n");
+		}
+		return adr;
 	}
 
 	public String getAddressHome() {
-		return getJsonEntry(KEY_ADDRESS_HOME).replace(ADDRESS_SEPARATOR, "\n");
+		return formatAddress(KEY_ADDRESS_HOME);
 	}
 
 	public String getStudentType() {
@@ -271,5 +279,9 @@ public class Person {
 		return streetCityWork;
 	}
 
+	public int getUserId() {
+		// FIXME do something clever
+		return getEmailWork().hashCode();
+	}
 
 }

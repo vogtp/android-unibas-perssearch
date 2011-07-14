@@ -2,6 +2,8 @@ package ch.almana.android.unibas.perssearch.view;
 
 
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import ch.almana.android.unibas.perssearch.R;
+import ch.almana.android.unibas.perssearch.contacts.ContactManager;
 import ch.almana.android.unibas.perssearch.helper.MenuHelper;
 import ch.almana.android.unibas.perssearch.model.Person;
 
@@ -58,13 +61,26 @@ public class PersonDetailsActivity extends ListActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.add_contact, menu);
 		MenuHelper.onCreateOptionsMenu(this, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		MenuHelper.onOptionsItemSelected(this, item);
+		if (MenuHelper.onOptionsItemSelected(this, item)) {
+			return true;
+		}
+		switch (item.getItemId()) {
+		case R.id.itemAddContacto:
+			AccountManager accountManager = AccountManager.get(this);
+			Account[] accounts = accountManager.getAccounts();
+			if (accounts.length > 0) {
+				// FIXME show accounts chooser
+				ContactManager.addToContacts(this, accounts[0], person);
+			}
+			return true;
+		}
 		return super.onOptionsItemSelected(item);
 	}
 }
