@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import ch.almana.android.unibas.perssearch.R;
 import ch.almana.android.unibas.perssearch.contacts.ContactManager;
+import ch.almana.android.unibas.perssearch.helper.Debugger;
 import ch.almana.android.unibas.perssearch.helper.MenuHelper;
 import ch.almana.android.unibas.perssearch.helper.Settings;
 import ch.almana.android.unibas.perssearch.model.Person;
@@ -30,6 +31,9 @@ public class PersonDetailsActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if (Debugger.DEBUG) {
+			setTitle(getTitle() + " - DEBUG");
+		}
 		updateView();
 	}
 
@@ -77,7 +81,9 @@ public class PersonDetailsActivity extends ListActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.add_contact, menu);
+		if (Debugger.DEBUG) {
+			getMenuInflater().inflate(R.menu.add_contact, menu);
+		}
 		MenuHelper.onCreateOptionsMenu(this, menu);
 		return super.onCreateOptionsMenu(menu);
 	}

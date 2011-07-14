@@ -29,6 +29,9 @@ public class PerssearchActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+		if (Debugger.DEBUG) {
+			setTitle(getTitle() + " - DEBUG");
+		}
 
 		updateView();
 
