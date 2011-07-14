@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.view;
+package ch.almana.android.unibas.perssearch.view.activity;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -14,6 +14,7 @@ import ch.almana.android.unibas.perssearch.contacts.ContactManager;
 import ch.almana.android.unibas.perssearch.helper.MenuHelper;
 import ch.almana.android.unibas.perssearch.helper.Settings;
 import ch.almana.android.unibas.perssearch.model.Person;
+import ch.almana.android.unibas.perssearch.view.adapter.PersonDetailAdapter;
 
 /**
  * Displays a word and its definition.

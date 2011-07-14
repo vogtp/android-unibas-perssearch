@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.view;
+package ch.almana.android.unibas.perssearch.view.preferences;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;

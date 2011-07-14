@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.view;
+package ch.almana.android.unibas.perssearch.view.adapter;
 
 import java.util.List;
 
@@ -19,8 +19,9 @@ import ch.almana.android.unibas.perssearch.helper.Logger;
 import ch.almana.android.unibas.perssearch.helper.Settings;
 import ch.almana.android.unibas.perssearch.model.Person;
 import ch.almana.android.unibas.perssearch.model.Person.FieldTypes;
+import ch.almana.android.unibas.perssearch.view.activity.PersonDetailsActivity;
 
-class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
+public class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
 
 	private final PersonDetailsActivity personDetailsActivity;
 	private final Person person;

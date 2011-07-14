@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.view;
+package ch.almana.android.unibas.perssearch.view.activity;
 
 
 import android.app.Activity;
@@ -15,6 +15,7 @@ import ch.almana.android.unibas.perssearch.access.PerssearchLoader;
 import ch.almana.android.unibas.perssearch.helper.Debugger;
 import ch.almana.android.unibas.perssearch.helper.MenuHelper;
 import ch.almana.android.unibas.perssearch.helper.Settings;
+import ch.almana.android.unibas.perssearch.view.adapter.PersonAdapter;
 
 
 public class PerssearchActivity extends Activity {
@@ -104,7 +105,7 @@ public class PerssearchActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-	void launchPersonActivity(String personId) {
+	public void launchPersonActivity(String personId) {
         Intent next = new Intent();
         next.setClass(this, PersonDetailsActivity.class);
 		next.putExtra(PersonDetailsActivity.EXTRA_ID, personId);

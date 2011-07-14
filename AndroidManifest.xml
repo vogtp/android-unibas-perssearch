@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="ch.almana.android.unibas.perssearch" android:versionCode="201104120" android:versionName="0.7.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="ch.almana.android.unibas.perssearch" android:versionCode="201104120"
+	android:versionName="0.7.0">
 
-    <uses-sdk android:minSdkVersion="5"/>
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_CONTACTS"></uses-permission>
-    <uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"></uses-permission>
-    
+	<uses-sdk android:minSdkVersion="5" />
+	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	<uses-permission android:name="android.permission.WRITE_CONTACTS"></uses-permission>
+	<uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
+	<uses-permission android:name="android.permission.GET_ACCOUNTS"></uses-permission>
 
-    <application android:label="@string/app_name" android:name=".application.PerssearchApplication" android:icon="@drawable/perssearch">
 
-        <activity android:label="@string/app_name"
-                android:name=".view.PerssearchActivity" android:allowTaskReparenting="true">
+	<application android:label="@string/app_name"
+		android:name=".application.PerssearchApplication" android:icon="@drawable/perssearch">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+		<activity android:label="@string/app_name" android:name=".view.activity.PerssearchActivity"
+			android:allowTaskReparenting="true">
 
-	<intent-filter>
-		<action android:name="android.intent.action.SEARCH" />
-		<category android:name="android.intent.category.DEFAULT" />
-		<data></data>
-	</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
 
-            <meta-data android:name="android.app.searchable"
-                    android:resource="@xml/searchable"/>
-        </activity>
+			<intent-filter>
+				<action android:name="android.intent.action.SEARCH" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<data></data>
+			</intent-filter>
 
-        <activity android:name=".view.PersonDetailsActivity" android:allowTaskReparenting="true"/>
+			<meta-data android:name="android.app.searchable"
+				android:resource="@xml/searchable" />
+		</activity>
 
-        <provider android:syncable="false" android:authorities="perssearch" android:name=".access.PerssearchProvider"/>
-        <activity android:name=".view.SettingsActivity" android:allowTaskReparenting="true"></activity>
+		<activity android:name=".view.activity.PersonDetailsActivity"
+			android:allowTaskReparenting="true" />
 
-    </application>
+		<provider android:syncable="false" android:authorities="perssearch"
+			android:name=".access.PerssearchProvider" />
+		<activity android:name=".view.preferences.SettingsActivity"
+			android:allowTaskReparenting="true"></activity>
+
+	</application>
 </manifest>

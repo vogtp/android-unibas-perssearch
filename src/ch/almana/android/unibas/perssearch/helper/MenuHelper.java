@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import ch.almana.android.unibas.perssearch.R;
-import ch.almana.android.unibas.perssearch.view.SettingsActivity;
+import ch.almana.android.unibas.perssearch.view.preferences.SettingsActivity;
 
 public class MenuHelper {
 
