@@ -20,41 +20,53 @@ import ch.almana.android.unibas.perssearch.view.adapter.PersonDetailAdapter;
  * Displays a word and its definition.
  */
 public class PersonDetailsActivity extends ListActivity {
-	
+
 	public static final String EXTRA_ID = "id";
 	private Person person;
 	private TextView tvName;
 	private TextView tvDescription;
+	private int currentAppAppearance;
 
 	@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		updateView();
+	}
 
-		if (Settings.getInstance().getAppAppearance() == Settings.APP_APPEARIANCE_ANDROID) {
+	@Override
+	protected void onResume() {
+		super.onResume();
+		updateView();
+	}
+
+	private void updateView() {
+		int appAppearance = Settings.getInstance().getAppAppearance();
+		if (appAppearance == currentAppAppearance) {
+			return;
+		}
+		if (appAppearance == Settings.APP_APPEARIANCE_ANDROID) {
 			setTheme(R.style.android);
 			setContentView(R.layout.person_detail_android);
 		} else {
 			setTheme(R.style.unibas_turquoise);
 			setContentView(R.layout.person_detail_unibas);
 		}
-        Intent intent = getIntent();
-		String personString = intent.getStringExtra(EXTRA_ID);
-
-		person = new Person(personString);
-
+		currentAppAppearance = appAppearance;
 		tvName = (TextView) findViewById(R.id.tvName);
 		tvDescription = (TextView) findViewById(R.id.tvDescription);
-		
+
 		tvDescription.setLines(1);
 		tvDescription.setEllipsize(TruncateAt.END);
+		displayData();
+	}
 
+	private void displayData() {
+		Intent intent = getIntent();
+		String personString = intent.getStringExtra(EXTRA_ID);
+		person = new Person(personString);
 		PersonDetailAdapter personDetailAdapter = new PersonDetailAdapter(this, person);
 		getListView().setAdapter(personDetailAdapter);
 		getListView().setOnItemClickListener(personDetailAdapter);
-		updateView();
-    }
-
-	private void updateView() {
 		tvName.setText(person.getName());
 		tvDescription.setText(person.getDesciption());
 	}

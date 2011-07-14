@@ -24,24 +24,19 @@ public class PerssearchActivity extends Activity {
 	private TextView mTextView;
     private ListView mList;
 	private boolean search;
+	private int currentAppAppearance;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+		updateView();
 
-        Intent intent = getIntent();
+    }
 
-		if (Settings.getInstance().getAppAppearance() == Settings.APP_APPEARIANCE_ANDROID) {
-			setTheme(R.style.android);
-			setContentView(R.layout.main_android);
-		} else {
-			setTheme(R.style.unibas_turquoise);
-			setContentView(R.layout.main_unibas);
-		}
-        
-
-        mTextView = (TextView) findViewById(R.id.textField);
+	private void displayData() {
+		Intent intent = getIntent();
+		mTextView = (TextView) findViewById(R.id.textField);
         mList = (ListView) findViewById(R.id.list);
 
 		search = true;
@@ -83,7 +78,7 @@ public class PerssearchActivity extends Activity {
         if (intent.getExtras() != null) {
             Log.d("dict", intent.getExtras().keySet().toString());
         }
-    }
+	}
 
 	@Override
 	protected void onResume() {
@@ -91,6 +86,23 @@ public class PerssearchActivity extends Activity {
 		if (search) {
 			onSearchRequested();
 		}
+		updateView();
+	}
+
+	private void updateView() {
+		int appAppearance = Settings.getInstance().getAppAppearance();
+		if (appAppearance == currentAppAppearance) {
+			return;
+		}
+		if (appAppearance == Settings.APP_APPEARIANCE_ANDROID) {
+			setTheme(R.style.android);
+			setContentView(R.layout.main_android);
+		} else {
+			setTheme(R.style.unibas_turquoise);
+			setContentView(R.layout.main_unibas);
+		}
+		currentAppAppearance = appAppearance;
+		displayData();
 	}
 
 	@Override
