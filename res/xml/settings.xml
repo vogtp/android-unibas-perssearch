@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-		android:key="prefKeyGui" android:title="@string/prefGui">
-		<ListPreference android:title="@string/prefAppAppearance"
-			android:summary="@string/prefAppAppearanceLong" android:entryValues="@array/prefAppAppearanceValues"
-			android:entries="@array/prefAppAppearanceEntries" android:key="prefKeyAppAppearance"
-			android:defaultValue="1"></ListPreference>
 
-	</PreferenceScreen>
+	<ListPreference android:title="@string/prefAppAppearance"
+		android:summary="@string/prefAppAppearanceLong" android:entryValues="@array/prefAppAppearanceValues"
+		android:entries="@array/prefAppAppearanceEntries" android:key="prefKeyAppAppearance"
+		android:defaultValue="1"></ListPreference>
+
 	<ListPreference android:entryValues="@array/prefSearchTypeValues"
 		android:title="@string/prefSearchType" android:entries="@array/prefSearchTypeEntries"
 		android:summary="@string/prefSearchTypeLong" android:key="prefKeySearchType"
