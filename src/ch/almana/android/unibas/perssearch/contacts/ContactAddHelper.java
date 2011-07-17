@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.helper;
+package ch.almana.android.unibas.perssearch.contacts;
 
 import android.app.Activity;
 import android.content.Context;

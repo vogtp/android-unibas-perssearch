@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.helper;
+package ch.almana.android.unibas.perssearch.contacts;
 
 import java.util.ArrayList;
 
@@ -16,6 +16,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts.Data;
 import android.widget.Toast;
+import ch.almana.android.unibas.perssearch.helper.Logger;
 import ch.almana.android.unibas.perssearch.model.Person;
 
 public class ContactAdder {
