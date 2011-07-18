@@ -284,4 +284,51 @@ public class Person {
 		return getEmailWork().hashCode();
 	}
 
+	public String getVcard() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("BEGIN:VCARD\n");
+		sb.append("VERSION:3.0\n");
+		sb.append("N:");
+		String getFamilyName = getFamilyName();
+		if (!NOT_GIVEN.equals(getFamilyName)) {
+			sb.append(getFamilyName);
+		}
+		sb.append(";");
+		String givenName = getGivenName();
+		if (!NOT_GIVEN.equals(givenName)) {
+			sb.append(givenName);
+		}
+		sb.append(";;;\n");
+		addVcardLine(sb, "EMAIL", "WORK", getEmailWork());
+		addVcardLine(sb, "EMAIL", "HOME", getEmailHome());
+		addVcardLine(sb, "EMAIL", "Institute", getEmailWork());
+		addVcardLine(sb, "ADR", "WORK", getAddressWork());
+		addVcardLine(sb, "ADR", "HOME", getAddressHome());
+		addVcardLine(sb, "TEL", "WORK;TYPE=FAX", getFaxWork());
+		addVcardLine(sb, "TEL", "HOME;TYPE=FAX", getFaxHome());
+		addVcardLine(sb, "TEL", "WORK", getPhoneWork());
+		addVcardLine(sb, "TEL", "HOME", getPhoneHome());
+		addVcardLine(sb, "TEL", "CELL", getPhoneMobile());
+		addVcardLine(sb, "URL", null, getWebpage());
+		sb.append("END:VCARD\n");
+		return sb.toString();
+	}
+
+	private void addVcardLine(StringBuilder sb, String kind, String type, String value) {
+		if (value != null && !NOT_GIVEN.equals(value)) {
+			sb.append(kind);
+			if (type != null) {
+				sb.append(";TYPE=").append(type);
+			}
+			if ("ADR".equals(kind)) {
+				value = value.replaceAll("\n", "\\n");
+				sb.append(":").append(value);
+				sb.append(";;;;");
+			} else {
+				sb.append(":").append(value);
+			}
+			sb.append("\n");
+		}
+	}
+
 }
