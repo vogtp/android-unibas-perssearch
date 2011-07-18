@@ -321,12 +321,9 @@ public class Person {
 				sb.append(";TYPE=").append(type);
 			}
 			if ("ADR".equals(kind)) {
-				value = value.replaceAll("\n", "\\n");
-				sb.append(":").append(value);
-				sb.append(";;;;");
-			} else {
-				sb.append(":").append(value);
+				value = value.replaceAll("\n", ";");
 			}
+			sb.append(":").append(value);
 			sb.append("\n");
 		}
 	}

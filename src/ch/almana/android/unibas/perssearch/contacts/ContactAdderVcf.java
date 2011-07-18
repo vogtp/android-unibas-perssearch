@@ -17,7 +17,7 @@ public class ContactAdderVcf {
 	public static void addContact(Context ctx, Person person) {
 		try {
 			File file = getVcfFile(ctx, person);
-			Intent i = new Intent(Intent.ACTION_VIEW);
+			Intent i = new Intent(Intent.ACTION_DEFAULT);
 			i.setDataAndType(Uri.fromFile(file), "text/x-vcard");
 			ctx.startActivity(i);
 		} catch (IOException e) {
