@@ -2,7 +2,7 @@ package ch.almana.android.unibas.perssearch.helper;
 
 public class Debugger {
 
-	public static boolean DEBUG = true;
+	public static boolean DEBUG = false;
 
 	public enum QueryType {
 		DEFAULT, LOCAL_DATA, FIXED_QUERY

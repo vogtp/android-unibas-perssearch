@@ -310,6 +310,10 @@ public class Person {
 		addVcardLine(sb, "TEL", "HOME", getPhoneHome());
 		addVcardLine(sb, "TEL", "CELL", getPhoneMobile());
 		addVcardLine(sb, "URL", null, getWebpage());
+		String desciption = getDesciption();
+		if (desciption != null && !NOT_GIVEN.equals(desciption) && !desciption.equals(getEmailWork())) {
+			addVcardLine(sb, "ORG", null, desciption);
+		}
 		sb.append("END:VCARD\n");
 		return sb.toString();
 	}
