@@ -21,6 +21,7 @@ public class Debugger {
 			+ "\"mailalternateaddress\":\"Pa.Vogt@unibas.ch\",\"givenname\":\"Test\",\"unibaschorgroledisplay\":\"\","
 			+ "\"employeetype\":\"Administration\",\"homephone\":\"061 555 55 55\",\"unibaschhomemobile\":\"079 777 77 77\","
 			+ "\"edupersonorgunitdn\":\"ou=urz,ou=units,ou=psearch,dc=unibas,dc=ch\"}";
+
 	public static final String JSON_STRING2 = " {\"registeredaddress\":\"\",\"unibaschhomefax\":\"\",\"homepostaladdress\":\"\",\"sn\":\"Vogt\",\n"
 			+ "	 \"postaladdress\":\"Universitätsrechenzentrum$Linux Gruppe$Mail Team$Klingelbergstrasse 70$CH-4056 Basel\",\n"
 			+ "	 \"dn\":\"uid=vogtp, ou=people, ou=intern, ou=psearch, dc=unibas, dc=ch\",\"uid\":\"vogtp\",\n"
