@@ -1,0 +1,19 @@
+en:
+Perssearch Uni Basel
+
+This is an android search plugin for perssearch.unibas.ch, the search engine for members of the university of Basel.
+
+In the details of the results, phone numbers can be called, e-mail addresses open a mail client and postal addresses can be displayed on the map.
+You can search for all members, staff only or students only, by switching the search type in settings.
+
+Unless you are a member of the Uni Basel or closely related you probably will not need or want this app.
+
+de:
+Perssearch Uni Basel
+
+Dies ist ein Plugin der android Suche für perssearch.unibas.ch, die Personen Suchmaschine der Universität Basel.
+
+In der Detailansicht der Suchresultate können Telefonnummern angerufen werden, an E-mail Adressen können Mails geschickt werden und die Post Adresse lässt sich auf der Karte darstellen.
+Es kann nach allen Personen oder nur nach Angestellten und Dozenten respektive nur nach Studenten gesucht werden. Dieser Such-Typ kann in den Einstellungen gewählt werden.
+
+Nur nützlich für Angehörige der Uni Basel.
