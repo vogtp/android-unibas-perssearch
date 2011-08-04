@@ -1,12 +1,3 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="addContact">Add</string>
-    <string-array name="prefAppAppearanceEntries">
-        <item>Unibas turquoise</item>
-        <item>android</item>
-    </string-array>
-    <string name="prefGui">GUI</string>
-    <string name="prefAppAppearance">App appearance</string>
-    <string name="prefAppAppearanceLong">Change to look and feel of the app.</string>
-    
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">    
 </resources>

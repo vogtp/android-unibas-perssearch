@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
+   <string name="addContact">Hinzufügen</string>
+    <string-array name="prefAppAppearanceEntries">
+        <item>Unibas Türkis</item>
+        <item>android</item>
+    </string-array>
+    <string name="prefGui">GUI</string>
+    <string name="prefAppAppearance">App Aussehen</string>
+    <string name="prefAppAppearanceLong">Ändert Farben und Stil der App.</string>
 	<string name="menuSettings">Einstellungen</string>
 	<string name="prefSearchType">Suchtyp</string>
 	<string name="prefSearchTypeLong">Suche alle Personen oder nur Angestellte/Dozenten respektive Studenten</string>
