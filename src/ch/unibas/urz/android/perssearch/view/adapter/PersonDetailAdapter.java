@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.view.adapter;
+package ch.unibas.urz.android.perssearch.view.adapter;
 
 import java.util.List;
 
@@ -14,12 +14,12 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import ch.almana.android.unibas.perssearch.R;
-import ch.almana.android.unibas.perssearch.helper.Logger;
-import ch.almana.android.unibas.perssearch.helper.Settings;
-import ch.almana.android.unibas.perssearch.model.Person;
-import ch.almana.android.unibas.perssearch.model.Person.FieldTypes;
-import ch.almana.android.unibas.perssearch.view.activity.PersonDetailsActivity;
+import ch.unibas.urz.android.perssearch.R;
+import ch.unibas.urz.android.perssearch.helper.Logger;
+import ch.unibas.urz.android.perssearch.helper.Settings;
+import ch.unibas.urz.android.perssearch.model.Person;
+import ch.unibas.urz.android.perssearch.model.Person.FieldTypes;
+import ch.unibas.urz.android.perssearch.view.activity.PersonDetailsActivity;
 
 public class PersonDetailAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
 

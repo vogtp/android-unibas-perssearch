@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.view.activity;
+package ch.unibas.urz.android.perssearch.view.activity;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -7,13 +7,13 @@ import android.text.TextUtils.TruncateAt;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import ch.almana.android.unibas.perssearch.R;
-import ch.almana.android.unibas.perssearch.contacts.ContactAdderVcf;
-import ch.almana.android.unibas.perssearch.helper.Debugger;
-import ch.almana.android.unibas.perssearch.helper.MenuHelper;
-import ch.almana.android.unibas.perssearch.helper.Settings;
-import ch.almana.android.unibas.perssearch.model.Person;
-import ch.almana.android.unibas.perssearch.view.adapter.PersonDetailAdapter;
+import ch.unibas.urz.android.perssearch.R;
+import ch.unibas.urz.android.perssearch.contacts.ContactAdderVcf;
+import ch.unibas.urz.android.perssearch.helper.Debugger;
+import ch.unibas.urz.android.perssearch.helper.MenuHelper;
+import ch.unibas.urz.android.perssearch.helper.Settings;
+import ch.unibas.urz.android.perssearch.model.Person;
+import ch.unibas.urz.android.perssearch.view.adapter.PersonDetailAdapter;
 
 /**
  * Displays a word and its definition.

@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.contacts;
+package ch.unibas.urz.android.perssearch.contacts;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -9,8 +9,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.widget.Toast;
-import ch.almana.android.unibas.perssearch.helper.Logger;
-import ch.almana.android.unibas.perssearch.model.Person;
+import ch.unibas.urz.android.perssearch.helper.Logger;
+import ch.unibas.urz.android.perssearch.model.Person;
 
 public class ContactAdderVcf {
 

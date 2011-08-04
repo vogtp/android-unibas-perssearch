@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.view.activity;
+package ch.unibas.urz.android.perssearch.view.activity;
 
 
 import android.app.Activity;
@@ -10,12 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
-import ch.almana.android.unibas.perssearch.R;
-import ch.almana.android.unibas.perssearch.access.PerssearchLoader;
-import ch.almana.android.unibas.perssearch.helper.Debugger;
-import ch.almana.android.unibas.perssearch.helper.MenuHelper;
-import ch.almana.android.unibas.perssearch.helper.Settings;
-import ch.almana.android.unibas.perssearch.view.adapter.PersonAdapter;
+import ch.unibas.urz.android.perssearch.R;
+import ch.unibas.urz.android.perssearch.access.PerssearchLoader;
+import ch.unibas.urz.android.perssearch.helper.Debugger;
+import ch.unibas.urz.android.perssearch.helper.MenuHelper;
+import ch.unibas.urz.android.perssearch.helper.Settings;
+import ch.unibas.urz.android.perssearch.view.adapter.PersonAdapter;
 
 
 public class PerssearchActivity extends Activity {

@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.view.adapter;
+package ch.unibas.urz.android.perssearch.view.adapter;
 
 import java.util.List;
 
@@ -15,10 +15,10 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.TwoLineListItem;
-import ch.almana.android.unibas.perssearch.helper.Settings;
-import ch.almana.android.unibas.perssearch.model.DummyPerson;
-import ch.almana.android.unibas.perssearch.model.Person;
-import ch.almana.android.unibas.perssearch.view.activity.PerssearchActivity;
+import ch.unibas.urz.android.perssearch.helper.Settings;
+import ch.unibas.urz.android.perssearch.model.DummyPerson;
+import ch.unibas.urz.android.perssearch.model.Person;
+import ch.unibas.urz.android.perssearch.view.activity.PerssearchActivity;
 
 public class PersonAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
 

@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.view;
+package ch.unibas.urz.android.perssearch.view;
 
 public class ChooseAccount {
 	// AccountManager accountManager = AccountManager.get(context);

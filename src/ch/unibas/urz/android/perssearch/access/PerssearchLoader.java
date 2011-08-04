@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.access;
+package ch.unibas.urz.android.perssearch.access;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,12 +18,12 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.net.Uri;
-import ch.almana.android.unibas.perssearch.helper.Logger;
-import ch.almana.android.unibas.perssearch.helper.Settings;
-import ch.almana.android.unibas.perssearch.helper.Settings.SearchType;
-import ch.almana.android.unibas.perssearch.model.DummyPerson;
-import ch.almana.android.unibas.perssearch.model.DummyPerson.DummyType;
-import ch.almana.android.unibas.perssearch.model.Person;
+import ch.unibas.urz.android.perssearch.helper.Logger;
+import ch.unibas.urz.android.perssearch.helper.Settings;
+import ch.unibas.urz.android.perssearch.helper.Settings.SearchType;
+import ch.unibas.urz.android.perssearch.model.DummyPerson;
+import ch.unibas.urz.android.perssearch.model.Person;
+import ch.unibas.urz.android.perssearch.model.DummyPerson.DummyType;
 
 public class PerssearchLoader {
 

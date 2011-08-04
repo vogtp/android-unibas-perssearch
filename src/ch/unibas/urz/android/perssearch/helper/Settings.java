@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.helper;
+package ch.unibas.urz.android.perssearch.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;

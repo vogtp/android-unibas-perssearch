@@ -1,11 +1,11 @@
-package ch.almana.android.unibas.perssearch.helper;
+package ch.unibas.urz.android.perssearch.helper;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
-import ch.almana.android.unibas.perssearch.R;
-import ch.almana.android.unibas.perssearch.view.preferences.SettingsActivity;
+import ch.unibas.urz.android.perssearch.R;
+import ch.unibas.urz.android.perssearch.view.preferences.SettingsActivity;
 
 public class MenuHelper {
 

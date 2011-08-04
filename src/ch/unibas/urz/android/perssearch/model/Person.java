@@ -1,4 +1,4 @@
-package ch.almana.android.unibas.perssearch.model;
+package ch.unibas.urz.android.perssearch.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.text.TextUtils;
-import ch.almana.android.unibas.perssearch.helper.Logger;
+import ch.unibas.urz.android.perssearch.helper.Logger;
 
 public class Person {
 

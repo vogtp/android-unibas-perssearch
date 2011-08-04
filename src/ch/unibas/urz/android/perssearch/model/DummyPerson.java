@@ -1,7 +1,7 @@
-package ch.almana.android.unibas.perssearch.model;
+package ch.unibas.urz.android.perssearch.model;
 
 import android.content.Context;
-import ch.almana.android.unibas.perssearch.R;
+import ch.unibas.urz.android.perssearch.R;
 
 public class DummyPerson extends Person {
 
@@ -12,8 +12,8 @@ public class DummyPerson extends Person {
 	private static DummyPerson PERSON_STUDS_TOO;
 	private static DummyPerson PERSON_STAFF_TOO;
 	private String query;
-	private String label;
-	private String desciption;
+	private final String label;
+	private final String desciption;
 
 	public static DummyPerson getDummy(Context ctx, DummyType type) {
 		switch (type) {

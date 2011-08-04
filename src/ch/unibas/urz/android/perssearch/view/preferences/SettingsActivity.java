@@ -1,8 +1,8 @@
-package ch.almana.android.unibas.perssearch.view.preferences;
+package ch.unibas.urz.android.perssearch.view.preferences;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import ch.almana.android.unibas.perssearch.R;
+import ch.unibas.urz.android.perssearch.R;
 
 public class SettingsActivity extends PreferenceActivity {
 	@Override

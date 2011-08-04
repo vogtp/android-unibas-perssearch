@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ch.almana.android.unibas.perssearch.access;
+package ch.unibas.urz.android.perssearch.access;
 
 import java.util.List;
 
@@ -26,12 +26,12 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.text.TextUtils;
-import ch.almana.android.unibas.perssearch.model.Person;
+import ch.unibas.urz.android.perssearch.model.Person;
 
 
 public class PerssearchProvider extends ContentProvider {
 
-	public static String AUTHORITY = "perssearch";
+	public static String AUTHORITY = "ch.unibas.perssearch";
 
     private static final int SEARCH_SUGGEST = 0;
     private static final int SHORTCUT_REFRESH = 1;
@@ -119,7 +119,8 @@ public class PerssearchProvider extends ContentProvider {
         return null;
     }
 
-    public String getType(Uri uri) {
+    @Override
+	public String getType(Uri uri) {
         switch (sURIMatcher.match(uri)) {
             case SEARCH_SUGGEST:
                 return SearchManager.SUGGEST_MIME_TYPE;
@@ -130,15 +131,18 @@ public class PerssearchProvider extends ContentProvider {
         }
     }
 
-    public Uri insert(Uri uri, ContentValues values) {
+    @Override
+	public Uri insert(Uri uri, ContentValues values) {
         throw new UnsupportedOperationException();
     }
 
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
+    @Override
+	public int delete(Uri uri, String selection, String[] selectionArgs) {
         throw new UnsupportedOperationException();
     }
 
-    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+    @Override
+	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         throw new UnsupportedOperationException();
     }
 }
