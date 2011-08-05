@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-       	android:background="@drawable/unibasel_inv"
-        android:layout_height="fill_parent">
-    <TextView
-            android:id="@+id/textField"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/search_instructions"/>
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:background="@drawable/unibasel_inv" android:layout_height="fill_parent">
+	<TextView android:id="@+id/textField" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/search_instructions"
+		android:textSize="20sp" android:linksClickable="true"
+		android:autoLink="web"  android:textAppearance="?android:attr/textAppearanceMedium"
+		android:clickable="true" android:layout_marginLeft="2dp"
+		android:layout_marginRight="2dp" android:layout_marginTop="2dp" />
+	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:text="@string/search_instructions1"
+		android:textSize="20sp"
+		 android:layout_marginLeft="2dp"
+		android:layout_marginRight="2dp" android:layout_marginTop="2dp"
+		android:clickable="true" android:id="@+id/tvInstallNew" />
+	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:text="@string/search_instructions2"
+		 android:textSize="20sp"
+		android:linksClickable="true" android:autoLink="web"
+		android:layout_marginLeft="2dp"
+		android:layout_marginRight="2dp" android:layout_marginTop="2dp"
+		android:clickable="true" android:id="@+id/tvUninstallOld" />
 
-    <ListView
-            android:id="@+id/list"
-            android:layout_width="fill_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1"/>
+
+	<ListView android:id="@+id/list" android:layout_width="fill_parent"
+		android:layout_height="0dip" android:layout_weight="1" />
 </LinearLayout>
 
 

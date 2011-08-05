@@ -4,10 +4,13 @@ package ch.almana.android.unibas.perssearch.view.activity;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import ch.almana.android.unibas.perssearch.R;
@@ -25,6 +28,8 @@ public class PerssearchActivity extends Activity {
     private ListView mList;
 	private boolean search;
 	private int currentAppAppearance;
+	private TextView tvUninstallOld;
+	private TextView tvInstallNew;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,8 @@ public class PerssearchActivity extends Activity {
 	private void displayData() {
 		Intent intent = getIntent();
 		mTextView = (TextView) findViewById(R.id.textField);
+		tvInstallNew = (TextView) findViewById(R.id.tvInstallNew);
+		tvUninstallOld = (TextView) findViewById(R.id.tvUninstallOld);
         mList = (ListView) findViewById(R.id.list);
 
 		search = true;
@@ -62,6 +69,10 @@ public class PerssearchActivity extends Activity {
 				}
 			}
 			mTextView.setText(getString(R.string.search_results, query, type));
+			tvInstallNew.setText("");
+			tvInstallNew.setMaxHeight(1);
+			tvUninstallOld.setText("");
+			tvUninstallOld.setMaxHeight(1);
 			PersonAdapter personAdapter = new PersonAdapter(this, PerssearchLoader.getInstance().getMatches(this, query, searchAll));
 			mList.setAdapter(personAdapter);
 			mList.setOnItemClickListener(personAdapter);
@@ -105,6 +116,24 @@ public class PerssearchActivity extends Activity {
 			setContentView(R.layout.main_unibas);
 		}
 		currentAppAppearance = appAppearance;
+		tvInstallNew = (TextView) findViewById(R.id.tvInstallNew);
+		tvUninstallOld = (TextView) findViewById(R.id.tvUninstallOld);
+		tvInstallNew.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String uriString = "market://search?q=pname:ch.unibas.urz.android.perssearch";
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(uriString)));
+			}
+		});
+		tvUninstallOld.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				String uriString = "market://search?q=pname:ch.almana.android.unibas.perssearch";
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(uriString)));
+			}
+		});
 		displayData();
 	}
 

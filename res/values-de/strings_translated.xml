@@ -18,7 +18,9 @@
     <string name="app_name">Perssearch Uni Basel</string>
     <string name="search_label">Perssearch</string>
     <string name="menu_search">Suche</string>
-    <string name="search_instructions">Bitten den Such Knopf drücken um Angehörige der Uni Basel zu suchen.</string>
+    <string name="search_instructions">Diese App wurde in den Account der Universität Basel migriert.</string>
+    <string name="search_instructions1">Bitte die neue <a href="market://search?q=pname:ch.unibas.urz.android.perssearch">Version installieren</a>.</string>
+    <string name="search_instructions2">Dannach kann diese <a href="market://search?q=pname:ch.almana.android.unibas.perssearch">Version deinstalliert</a> werden.</string>
     <string name="search_results">Suchresultate für \'<xliff:g id="string">%s</xliff:g>\': </string>
     <string name="search_settings_description">Angehörige der Uni Basel</string>
     <string name="email_work">E-mail geschäftlich</string>

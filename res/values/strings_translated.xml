@@ -7,8 +7,10 @@
     <string name="address_work">Address work</string>
     <string name="app_name">Perssearch Uni Basel</string>
     <string name="search_label">Perssearch</string>
-    <string name="menu_search">Search</string>
-    <string name="search_instructions">Press the search key to look up a member of the University of Basel</string>
+    <string name="menu_search">Search</string>    
+    <string name="search_instructions">This App has been moved to the account of the Universität Basel, there will be no more updates on this account.</string>
+    <string name="search_instructions1">Please <a href="market://search?q=pname:ch.unibas.urz.android.perssearch">install the new version</a>.</string>
+    <string name="search_instructions2">After <a href="market.android.com">this version can be deinstalled</a>.</string>
     <string name="search_results">Search results for \'<xliff:g id="string">%s</xliff:g>\' (<xliff:g id="string">%s</xliff:g>): </string>
     <string name="search_settings_description">Members of the University of Basel</string>
     <string name="fax_work">Fax work</string>
