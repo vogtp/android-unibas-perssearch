@@ -25,7 +25,7 @@
     <string name="app_name">Perssearch Uni Basel</string>
     <string name="search_label">Perssearch</string>
     <string name="menu_search">Suche</string>
-    <string name="search_instructions">Bitten den Such Knopf drücken um Angehörige der Uni Basel zu suchen.</string>
+    <string name="search_instructions">Bitten den Such Knopf (im Menu) drücken um Angehörige der Uni Basel zu suchen.</string>
     <string name="search_results">Suchresultate für \'<xliff:g id="string">%s</xliff:g>\': </string>
     <string name="search_settings_description">Angehörige der Uni Basel</string>
     <string name="email_work">E-mail geschäftlich</string>
