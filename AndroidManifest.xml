@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="ch.unibas.urz.android.perssearch" android:versionCode="201108080" android:versionName="1.0.1">
+	package="ch.unibas.urz.android.perssearch" android:versionName="1.1.0" android:versionCode="201108120">
 
 	<uses-sdk android:minSdkVersion="5" />
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
