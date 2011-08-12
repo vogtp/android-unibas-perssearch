@@ -4,12 +4,13 @@
         android:orientation="vertical" style="@style/appWindow"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
+	<com.markupartist.android.widget.ActionBar
+		android:id="@+id/actionBar1" style="@style/ActionBarUnibas" />
     <TextView
             android:id="@+id/textField"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"  style="@style/textviewWhite"
-            android:text="@string/search_instructions"/>
+            android:layout_height="wrap_content"  style="@style/textviewWhite"/>
 
     <ListView
             android:id="@+id/list" style="@style/appListview"

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
 import ch.unibas.urz.android.perssearch.R;
@@ -16,6 +18,9 @@ import ch.unibas.urz.android.perssearch.helper.Debugger;
 import ch.unibas.urz.android.perssearch.helper.MenuHelper;
 import ch.unibas.urz.android.perssearch.helper.Settings;
 import ch.unibas.urz.android.perssearch.view.adapter.PersonAdapter;
+
+import com.markupartist.android.widget.ActionBar;
+import com.markupartist.android.widget.ActionBar.Action;
 
 
 public class PerssearchActivity extends Activity {
@@ -29,10 +34,9 @@ public class PerssearchActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		if (Debugger.DEBUG) {
-			setTitle(getTitle() + " - DEBUG");
+		if (Settings.getInstance().getAppAppearance() != Settings.APP_APPEARIANCE_ANDROID) {
+			requestWindowFeature(Window.FEATURE_NO_TITLE);
 		}
-
 		updateView();
 
     }
@@ -49,7 +53,7 @@ public class PerssearchActivity extends Activity {
             finish();
         } else if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-			boolean searchAll = intent.getExtras().getBoolean(EXTRA_SEARCH_ALL, false);
+			boolean searchAll = intent.getBooleanExtra(EXTRA_SEARCH_ALL, false);
 			String type = getResources().getStringArray(R.array.prefSearchTypeEntries)[0];
 			if (!searchAll) {
 				switch (Settings.getInstance().getSearchType()) {
@@ -103,6 +107,19 @@ public class PerssearchActivity extends Activity {
 		} else {
 			setTheme(R.style.unibas_turquoise);
 			setContentView(R.layout.main_unibas);
+
+			ActionBar actionBar = (ActionBar) findViewById(R.id.actionBar1);
+			actionBar.setTitle(R.string.app_name);
+			actionBar.addAction(new Action() {
+				@Override
+				public void performAction(View view) {
+					PerssearchActivity.this.onSearchRequested();
+				}
+				@Override
+				public int getDrawable() {
+					return android.R.drawable.ic_menu_search;
+				}
+			});
 		}
 		currentAppAppearance = appAppearance;
 		displayData();

@@ -6,14 +6,18 @@ import android.os.Bundle;
 import android.text.TextUtils.TruncateAt;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import ch.unibas.urz.android.perssearch.R;
 import ch.unibas.urz.android.perssearch.contacts.ContactAdderVcf;
-import ch.unibas.urz.android.perssearch.helper.Debugger;
 import ch.unibas.urz.android.perssearch.helper.MenuHelper;
 import ch.unibas.urz.android.perssearch.helper.Settings;
 import ch.unibas.urz.android.perssearch.model.Person;
 import ch.unibas.urz.android.perssearch.view.adapter.PersonDetailAdapter;
+
+import com.markupartist.android.widget.ActionBar;
+import com.markupartist.android.widget.ActionBar.Action;
 
 /**
  * Displays a word and its definition.
@@ -29,8 +33,8 @@ public class PersonDetailsActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (Debugger.DEBUG) {
-			setTitle(getTitle() + " - DEBUG");
+		if (Settings.getInstance().getAppAppearance() != Settings.APP_APPEARIANCE_ANDROID) {
+			requestWindowFeature(Window.FEATURE_NO_TITLE);
 		}
 		updateView();
 	}
@@ -52,6 +56,30 @@ public class PersonDetailsActivity extends ListActivity {
 		} else {
 			setTheme(R.style.unibas_turquoise);
 			setContentView(R.layout.person_detail_unibas);
+			ActionBar actionBar = (ActionBar) findViewById(R.id.actionBar1);
+			actionBar.setTitle(R.string.app_name);
+			actionBar.addAction(new Action() {
+				@Override
+				public void performAction(View view) {
+					ContactAdderVcf.addContact(PersonDetailsActivity.this, person);
+				}
+
+				@Override
+				public int getDrawable() {
+					return android.R.drawable.ic_menu_add;
+				}
+			});
+			actionBar.addAction(new Action() {
+				@Override
+				public void performAction(View view) {
+					searchAgain();
+				}
+
+				@Override
+				public int getDrawable() {
+					return android.R.drawable.ic_menu_search;
+				}
+			});
 		}
 		currentAppAppearance = appAppearance;
 		tvName = (TextView) findViewById(R.id.tvName);
@@ -99,7 +127,16 @@ public class PersonDetailsActivity extends ListActivity {
 			// }
 			ContactAdderVcf.addContact(this, person);
 			return true;
+		case R.id.itemSearch:
+			searchAgain();
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void searchAgain() {
+		Intent i = new Intent(this, PerssearchActivity.class);
+		// i.setAction(Intent.ACTION_SEARCH);
+		startActivity(i);
 	}
 }
