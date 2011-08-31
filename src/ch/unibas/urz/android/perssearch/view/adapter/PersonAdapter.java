@@ -27,12 +27,12 @@ public class PersonAdapter extends BaseAdapter implements AdapterView.OnItemClic
 	 */
 	private final PerssearchActivity perssearchActivity;
 	private final List<Person> persons;
-	private final LayoutInflater mInflater;
+	private final LayoutInflater inflater;
 
 	public PersonAdapter(PerssearchActivity perssearchActivity, List<Person> persons) {
 		this.perssearchActivity = perssearchActivity;
 		this.persons = persons;
-		mInflater = (LayoutInflater) this.perssearchActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		inflater = (LayoutInflater) this.perssearchActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class PersonAdapter extends BaseAdapter implements AdapterView.OnItemClic
 	}
 
 	private TwoLineListItem createView(ViewGroup parent) {
-		TwoLineListItem item = (TwoLineListItem) mInflater.inflate(android.R.layout.simple_list_item_2, parent, false);
+		TwoLineListItem item = (TwoLineListItem) inflater.inflate(android.R.layout.simple_list_item_2, parent, false);
 		item.getText2().setSingleLine();
 		item.getText2().setEllipsize(TextUtils.TruncateAt.END);
 		return item;
