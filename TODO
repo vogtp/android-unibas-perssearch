@@ -1,2 +1,3 @@
 - in market description: how to add to std search
-- move search code to thread (and cache I DB)
+- move search code to thread (and cache in DB)
+- move import file to subdirectory
